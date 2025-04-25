@@ -1,0 +1,45 @@
+initialize() {
+    initializeMutationRate(1e-7);
+
+    // neutral mutation (not deleterious nor beneficial)
+    initializeMutationType("m1", 0.5, "f", 0.0);
+    initializeMutationType("m2", 0.5, "f", -0.1);    // alternative deleterious mutation
+
+    initializeGenomicElementType("g1", m1, 1.0);    // 1.0 means that in g1 the mutation that happens will always be m1
+
+    initializeGenomicElement(g1, 0, 99999); // specifying a region? 0 - 99999 where g1 applies
+
+    initializeRecombinationRate(1e-8);  // crossing over even between any adjacant has chance of 1e-8
+}
+
+1 early() { 
+    sim.addSubpop("p1", 50);
+    cat("Initial p1 Fitness (should be 1): " + mean(p1.cachedFitness(NULL)) + "\n");
+    sim.addSubpop("p2", 50);
+    cat("Initial p2 Fitness (should be 1): " + mean(p2.cachedFitness(NULL)) + "\n");
+}
+
+1000 early() {
+    cat("New p1 Fitness: " + mean(p1.cachedFitness(NULL)) + "\n");
+    cat("New p2 Fitness: " + mean(p2.cachedFitness(NULL)) + "\n");
+    // set up p3 to generate itself entirely from migrants
+    sim.addSubpop("p3", 100);
+    p3.setMigrationRates(c(p1, p2), c(0.5, 0.5));
+}
+
+1000 late() {
+    // remove the source subpopulations
+    p3.setMigrationRates(c(p1, p2), c(0.0, 0.0));
+    p1.setSubpopulationSize(0);
+    p2.setSubpopulationSize(0);
+}
+
+1001 early() {
+    cat("Initial p3 Fitness: " + mean(p3.cachedFitness(NULL)) + "\n");
+}
+
+10000 early() {
+    cat("Final p3 Fitness: " + mean(p3.cachedFitness(NULL)) + "\n");
+}
+
+10000 late() { sim.outputFixedMutations(); }

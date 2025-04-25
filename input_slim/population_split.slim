@@ -1,0 +1,27 @@
+initialize() {
+    initializeMutationRate(1e-7);
+
+    // neutral mutation (not deleterious nor beneficial)
+    initializeMutationType("m1", 0.5, "f", 0.0);
+    initializeMutationType("m2", 0.5, "f", -0.1);    // alternative deleterious mutation
+
+    initializeGenomicElementType("g1", m1, 1.0);    // 1.0 means that in g1 the mutation that happens will always be m1
+
+    initializeGenomicElement(g1, 0, 99999); // specifying a region? 0 - 99999 where g1 applies
+
+    initializeRecombinationRate(1e-8);  // crossing over even between any adjacant has chance of 1e-8
+}
+
+1 early() {
+    sim.addSubpop("p1", 50);
+    cat("Initial p1 Fitness (should be 1): " + mean(p1.cachedFitness(NULL)) + "\n");
+}
+
+100 early() {
+    cat("New p1 Fitness: " + mean(p1.cachedFitness(NULL)) + "\n");
+    sim.addSubpopSplit("p2", 20, p1);
+    cat("Initial p2 Fitness: " + mean(p2.cachedFitness(NULL)) + "\n");
+
+}
+
+10000 late() { sim.outputFixedMutations(); }
