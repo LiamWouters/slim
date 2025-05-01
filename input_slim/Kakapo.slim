@@ -1,0 +1,158 @@
+initialize() {
+	// NOTE: The values defined here (besides 'effectDel' and 'MU') are still values Curro used in his example script 
+	defineConstantIfInteractive("populationLimit", 500000)	;
+	
+	initializeSLiMModelType("nonWF");
+	initializeSex("X");
+	
+	defineConstantIfInteractive("effectDel", -0.00001);
+	initializeMutationType("m2", 0.5, "f", effectDel); // deleterious mutations
+	
+	// Since we are only simulating the viability of the population,
+	// that mutation should not stop contributing after getting fixed. The easiest
+	// way to achieve that is to manually keep it as a mutation. 
+	m2.convertToSubstitution = F;
+	
+	initializeGenomicElementType("g1", m2, 1.0);
+	// Length of the stretch of DNA we are simulating (base-pairs)
+	defineConstantIfInteractive("L", 1e6);
+	initializeGenomicElement(g1, 0, L);
+	
+	defineConstantIfInteractive("MU", 9.18235294e-9); // Kakapo mutation rate
+	initializeMutationRate(MU);
+	
+	defineConstantIfInteractive("RHO", 1e-8); // Recombination rate
+	initializeRecombinationRate(RHO);
+	
+	// Kakapo juvenile survival rates per age until adulthood:
+		// Male Juvenile Survival Rates
+	defineConstant("MaleJSR", c(0.7807, 0.7807, 0.7807, 0.7807, 0.7807)); 
+		// Female Juvenile Survival Rates
+	defineConstant("FemaleJSR", c(0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836));
+	
+	// Adult Kakapo Survival Rate
+	defineConstant("AdultSR", 0.996);
+}
+
+// Defining the mating process
+reproduction() {
+	// Males can reproduce after the age of 5. Females after 10. (from this age we consider them adults)
+	// 1 generation every +-3 years. I will give each individual a chance to mate once every 3 years after reaching adulthood.
+	// 2-3 'eggs' per generation. (will randomly choose 2 or 3 and create that many offspring)
+	// 5/33 Males reproduce
+	
+	if (individual.sex == "F") {
+		// Female needs to be atleast 10 years old (adult)
+		if (individual.age < 10) {
+			return;
+		}	
+		
+		// Check if this female is "ready" for a new generation. (1 generation every +-3 years)
+		if ((individual.age-10)%3 != 0.0) {	
+			return; // not ready	
+		}
+		
+		// Search for a mate //
+		// Get an adult male as mate
+		// tagL0 is a boolean value that is either True or False (set at birth)
+		//		it has a 5/33 chance to be true.
+		adultMaleMate = subpop.sampleIndividuals(1, sex="M", minAge=5, tagL0=T);
+		if (adultMaleMate.size() == 0) {
+			return; // No mate found, cant reproduce		
+		}
+		
+		// create 2-3 offspring per gen
+		offspringCount =  rdunif(1, min=2, max=3); // Random number between 2-3 (eggs)
+		for (childNr in 1:offspringCount) {
+			child = subpop.addCrossed(individual, adultMaleMate);
+			
+			// Set reproduction tag for new child
+			if (child.sex == "M") {
+				child.tagL0 = willReproduce(); // 5/33 males reproduce
+			} else {
+				child.tagL0 = T; // all females reproduce		
+			}
+		}
+	}
+}
+
+// We initialize the population with N individuals.
+1 first() {
+	defineConstantIfInteractive("N", 243); // Size of initial the population
+	defineConstantIfInteractive("RUNTIME", 600); // When to stop the simulation
+	sim.addSubpop("p1", N);
+	// Set all individuals to a random age between 0-60
+	p1.individuals.age = rdunif(N, min=0, max=60);
+	
+	for (ind in p1.individuals) {
+		// Set reproduction tag for each individual
+		if (ind.sex == "M") {
+			ind.tagL0 = willReproduce(); // 5/33 males reproduce
+		} else {
+			ind.tagL0 = T; // all females reproduce		
+		}
+	}
+}
+
+early() {
+	// Calculate fitness
+	maleJuveniles = p1.subsetIndividuals(sex="M", maxAge=4);	// Get all males younger than 5
+	maleJuvAges = maleJuveniles.age;
+	maleJuvSurvival = MaleJSR[maleJuvAges];
+	maleJuveniles.fitnessScaling = maleJuvSurvival;
+	
+	femaleJuveniles = p1.subsetIndividuals(sex="F", maxAge=9); // Get all females younger than 10
+	femaleJuvAges = femaleJuveniles.age;
+	femaleJuvSurvival = FemaleJSR[femaleJuvAges];
+	femaleJuveniles.fitnessScaling = femaleJuvSurvival;
+	
+	// Set survival rates for all other Kakapo's:
+	maleAdultKakapo = p1.subsetIndividuals(sex="M", minAge=5);
+	femaleAdultKakapo = p1.subsetIndividuals(sex="F", minAge=10);
+	
+	maleAdultKakapo.fitnessScaling = AdultSR;
+	femaleAdultKakapo.fitnessScaling = AdultSR;
+	
+	// TODO: for now i just kill off all Kakapo's older than 60
+	tooOld = p1.subsetIndividuals(minAge=61);
+	tooOld.fitnessScaling = 0.0;
+}
+
+late() {
+	if (p1.individualCount==0){
+		catn("Population went extinct!");
+		sim.simulationFinished();
+	}
+	if (p1.individualCount>=populationLimit){
+		catn("Population grew above limit of " + populationLimit + "!");
+		sim.simulationFinished();
+	}
+	inds = p1.individuals;
+	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")");
+}
+
+RUNTIME late() {sim.simulationFinished();}
+
+
+///// HELPER FUNCTIONS /////
+function (logical)willReproduce(void) {
+	// Since 5/33 of male Kakapo's reproduce. 
+	// This function will return True with a 5/33 chance, False otherwise
+	x = rdunif(1, min=0, max=33); // Random number between 0-33	
+	if (x < 5) {
+		return T;
+	} else {
+		return F;
+	}
+}
+
+function (void)defineConstantIfInteractive(string$ symbol, * value){
+	// Ideally, we want to try many different combinations of parameters
+	// This is best done executing this model from the command line
+	// slim -d 'effectDel=-0.01' model.slim
+	// For interactive debugging, it's useful to hard-code the values
+	// This function is a wrapper that only defines the variable if
+	// executing from the GUI app. 
+	if (exists("slimgui"))
+		defineConstant(symbol, value);
+}

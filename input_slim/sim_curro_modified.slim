@@ -15,7 +15,7 @@ initialize() {
 	// Not all deleterious mutations have the same selection coefficient. 
 	// You can look into distribution of fitness effects literature. 
 	// For now, I assume a fixed coefficient:
-	defineConstantIfInteractive("effectDel", -0.05);
+	defineConstantIfInteractive("effectDel", -0.9);
 	initializeMutationType("m2", 0.5, "f", effectDel); // deleterious mutations
 	
 	// By default, SLiM will remove mutations that are fixed in the population.
@@ -57,7 +57,10 @@ initialize() {
 // That said, it all depends on your species model. Tamarins give birth to twins only (I think), for example. Gorillas have a single-male (many-female) 
 // polygynous mating. You can search for sexual populations if you want. 
 reproduction() {
-	subpop.addCrossed(individual, subpop.sampleIndividuals(1));
+	mate = subpop.sampleIndividuals(1);
+	if (individual != mate) { // Cant breed with yourself... i think...
+		subpop.addCrossed(individual, subpop.sampleIndividuals(1));
+	}
 }
 
 // We initialize the population with a certain number of individuals.
@@ -65,7 +68,7 @@ reproduction() {
 // to match the generation time, otherwise, you have to re-scale mutation
 // and recombination rate).
 1 first() {
-	defineConstantIfInteractive("N", 100); // Size of initial the population
+	defineConstantIfInteractive("N", 10); // Size of initial the population
 	defineConstantIfInteractive("RUNTIME", 500); // When to stop the simulation
 	sim.addSubpop("p1", N);
 }
@@ -74,14 +77,27 @@ reproduction() {
 // according to the genetics of the individual. Code below defines other
 // (non-genetic) aspects of it. For example, that old individuals are more
 // likely to die. Code below simply kills every individual older than 2 generations. You could make something more realistic.  
-2: early() {	
-	parents = p1.subsetIndividuals(minAge=2);
-	parents.fitnessScaling = 0.0;
+2: early() {
+	parents = p1.subsetIndividuals(minAge=3);
+	parents.fitnessScaling = 0.2;
+	
+	juveniles = p1.subsetIndividuals(minAge=0, maxAge=0);
+	juveniles.fitnessScaling = 0.35;
+	
+	if (p1.individualCount > 1000) {
+		// This effectively results in killing +-750 individuals whenever 1000 individuals is reached
+		catn(p1.individualCount + " individuals");
+		p1.fitnessScaling = 1000 / (1 + 2 * p1.individualCount);
+	}
 }
 late() {
 	if (p1.individualCount==0){
 		catn("Population went extinct!");
-		sim.simulationFinished();	
+		sim.simulationFinished();
+	}
+	else if (p1.individualCount>2000) {
+		catn("Population too good!");
+		sim.simulationFinished();
 	}
 	inds = p1.individuals;
 	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")");
