@@ -1,0 +1,100 @@
+// This script has some ideas of how I would approach this project. 
+
+initialize() {
+	// In population genetics, Wright-Fisher populations are
+	// a very well established concept. Because of this, is SLiM
+	// default. Here, by nonWF we imply we want full control of
+	// the different steps (seach for nonWF Cycle)
+	initializeSLiMModelType("nonWF");
+	
+	// Set up genetics
+	// Neutral mutations by definition do not affect fitness. Beneficial 
+	// mutations are extremely rare. As a first step, I suggest only simulate
+	// deleterious mutations. 
+	initializeMutationType("m1", 0.5, "f", 0.0); // neutral mutations
+	// Not all deleterious mutations have the same selection coefficient. 
+	// You can look into distribution of fitness effects literature. 
+	// For now, I assume a fixed coefficient:
+	defineConstantIfInteractive("effectDel", -0.05);
+	initializeMutationType("m2", 0.5, "f", effectDel); // deleterious mutations
+	
+	// By default, SLiM will remove mutations that are fixed in the population.
+	// If you think about it, after all haplotypes carry one mutation, it is
+	// not possible to say whether there was once a mutation there or not. 
+	// However, since we are only simulating the viability of the population,
+	// that mutation should not stop contributing after getting fixed. The easiest
+	// way to achieve that is to manually keep it as a mutation. 
+	m2.convertToSubstitution = F;
+	
+	// Along the region, different genomic regions experience 
+	// mutations differently. Below, I define a genomic region that only 
+	// experiences negative mutations
+	// (one that has many coding-regions, for example). 
+	initializeGenomicElementType("g1", m2, 1.0);
+	// Length of the stretch of DNA we are simulating (base-pairs)
+	defineConstantIfInteractive("L", 1e6);
+	initializeGenomicElement(g1, 0, L);
+	// Mutation rates can be found in the literature in units of
+	// mutations per generation. Since we only simulate deleterious
+	// mutations, we need to scale it so it is in units of deleterious
+	// mutations per generation. Getting that requires some assumptions. 
+	// The simplest would be to assume a constant base mutation rate and
+	// a probability of a mutation being deleterious. You can find literature
+	// on this topic. 
+	defineConstantIfInteractive("MU", 1e-8); // Base mutation rate
+	defineConstantIfInteractive("p", 0.9); // Fraction of mutations that are deleterious
+	initializeMutationRate(MU * p);
+	defineConstantIfInteractive("RHO", 1e-8); // Recombination rate		
+	initializeRecombinationRate(RHO);
+}
+
+// Next, you define how the simulation should model the mating system. 
+// This code behaves as in each mating season, each individual chooses 
+// exeactly another individual as a mate. Ideally, you would
+// make a more realistic model. Typically, there's literature about the
+// average number of offspring of a species. A very natural choice is do
+// model the number of offspring as a poisson distribution. 
+// That said, it all depends on your species model. Tamarins give birth to twins only (I think), for example. Gorillas have a single-male (many-female) 
+// polygynous mating. You can search for sexual populations if you want. 
+reproduction() {
+	subpop.addCrossed(individual, subpop.sampleIndividuals(2));
+}
+
+// We initialize the population with a certain number of individuals.
+// In this code, each tick is a unit of time (most likely, you want that
+// to match the generation time, otherwise, you have to re-scale mutation
+// and recombination rate).
+1 first() {
+	defineConstantIfInteractive("N", 100); // Size of initial the population
+	defineConstantIfInteractive("RUNTIME", 500); // When to stop the simulation
+	sim.addSubpop("p1", N);
+}
+
+// The simulation will handle how to decreas ethe probability of survival
+// according to the genetics of the individual. Code below defines other
+// (non-genetic) aspects of it. For example, that old individuals are more
+// likely to die. Code below simply kills every individual older than 2 generations. You could make something more realistic.  
+2: early() {	
+	parents = p1.subsetIndividuals(minAge=2);
+	parents.fitnessScaling = 0.0;
+}
+late() {
+	if (p1.individualCount==0){
+		catn("Population went extinct!");
+		sim.simulationFinished();	
+	}
+	inds = p1.individuals;
+	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")");
+}
+RUNTIME late() {sim.simulationFinished();}
+
+function(void)defineConstantIfInteractive(string$ symbol, * value){
+	// Ideally, we want to try many different combinations of parameters
+	// This is best done executing this model from the command line
+	// slim -d 'effectDel=-0.01' model.slim
+	// For interactive debugging, it's useful to hard-code the values
+	// This function is a wrapper that only defines the variable if
+	// executing from the GUI app. 
+	if (exists("slimgui"))
+		defineConstant(symbol, value);
+}

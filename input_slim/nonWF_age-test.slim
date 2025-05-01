@@ -1,0 +1,54 @@
+initialize() {
+	initializeSLiMModelType("nonWF");
+	
+	defineConstant("K", 30);
+	// Define "life table" giving a probability of mortality at each age.
+	// vb: newly generated juveniles have a 70% mortality rate
+	defineConstant("L", c(0.7, 0.0, 0.0, 0.0, 0.25, 0.5, 0.75, 1.0));
+	
+	initializeMutationType("m1", 0.5, "f", -0.1);
+//	m1.convertToSubstitution = T;
+	
+	initializeGenomicElementType("g1", m1, 1.0);
+	initializeGenomicElement(g1, 0, 99999);
+	initializeMutationRate(1e-7);
+	initializeRecombinationRate(1e-8);
+}
+
+reproduction() {
+	// Check if our individual is at least older than 2
+	if (individual.age > 2) {
+		// Get a new mate with a minimum age of 3
+		mate = subpop.sampleIndividuals(1, minAge=3);
+		// Create offspring
+		subpop.addCrossed(individual, mate);
+	}
+}
+
+1 early() {
+	sim.addSubpop("p1", 10);
+	
+	// draw the starting ages of the 10 individuals from a discrete uniform distribution. So that not all individuals start at age 0.
+	// This is important because .addSubpop creates all individuals with age 0. But in this model the mortality rate of juveniles is really high. Which could lead to the population going extinct instantly.
+	p1.individuals.age = rdunif(10, min=0, max=7);
+}
+
+early() {
+	// life table based individual mortality (age based mortality)
+	inds = p1.individuals;
+	ages = inds.age;
+	mortality = L[ages];	// get mortality for the age from the array constant L
+	survival = 1 - mortality;
+	inds.fitnessScaling = survival;	// set individual fitnessScaling
+	
+	// density-dependence, factoring in individual mortality
+	// This still helps the population stay around K individuals
+	// (causes the population size to fluctuate stochastically around K)
+	p1.fitnessScaling = K / (p1.individualCount * mean(survival));
+}
+
+late() {
+	// print our age distribution after mortality
+	catn(sim.cycle + ": " + paste(sort(p1.individuals.age)));
+}
+2000 late() { sim.outputFixedMutations(); }

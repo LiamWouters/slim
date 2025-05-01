@@ -1,0 +1,41 @@
+initialize() {
+	initializeSLiMModelType("nonWF");
+	defineConstant("K", 500);
+	
+	initializeMutationType("m1", 0.5, "f", 0.0);
+	m1.convertToSubstitution = T;	// set to F by default, needs to be set to T when desired. Only safe to allow neutral mutations (with no side effects) to convert to substitution objects.
+		
+	initializeGenomicElementType("g1", m1, 1.0);
+	initializeGenomicElement(g1, 0, 99999);
+	initializeMutationRate(1e-7);
+	initializeRecombinationRate(1e-8);
+}
+
+// This block is called once per individual in the beginning of each cycle (to generate offspring)
+reproduction() {
+	// cross (to get offspring) the individual this was called for and 1 random individual (received from .sampleIndividuals(1))
+	subpop.addCrossed(individual, subpop.sampleIndividuals(1));
+}
+
+1 early() {
+	// Only defines the starting size of the population
+	sim.addSubpop("p1", 10);
+}
+
+// Death
+early() {
+	// You can use any formula this one does the following:
+	// if the subpopulation size is <K, fitnessScaling will be >1
+	//   -> subpop size will grow/ no mortality occurs
+	// if the subpopulation size is >K, fitnessScaling will be <1
+	//   -> subpop size will shrink
+	p1.fitnessScaling = K / p1.individualCount;
+}
+late() {
+	inds = p1.individuals;
+	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")");
+}
+
+2000 late() {
+	sim.outputFull(ages=T);
+}
