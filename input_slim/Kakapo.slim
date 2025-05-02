@@ -44,7 +44,7 @@ initialize() {
 	defineConstant("AdultSR", 0.996);
 	
 	// Constant defining how many individuals the habitat can support
-	defineConstantIfInteractive("K", 150);
+	defineConstantIfInteractive("K", 20);
 }
 
 // Defining the mating process
@@ -81,7 +81,7 @@ reproduction() {
 			
 			// Set reproduction tag for new child
 			if (child.sex == "M") {
-				child.tagL0 = willReproduce(); // 5/33 males reproduce
+				child.tagL0 = F; // set to false at birth. will get recalculated per simulation step anyways.
 			} else {
 				child.tagL0 = T; // all females reproduce		
 			}
@@ -134,6 +134,21 @@ early() {
 	// Meaning: too many individuals might lead to less resources from the environment per individual -> more deaths
 	//          less individuals might lead to more resources available for the individuals -> less deaths
 	p1.fitnessScaling = K / p1.individualCount; // TODO: see if there are better formulas to calculate this.
+	
+	
+	// Recalculate male mating chance per simulation step: (so that not always the same males will mate)
+	allMales = p1.subsetIndividuals(sex="M");
+	for (male in allMales) {
+		male.tagL0	= willReproduce(); // 5/33 males reproduce. Give each male its 5/33 chance every year
+	}
+	// Check that at least 1 adult male has the flag set to True
+	reproducingMales = p1.subsetIndividuals(sex="M", minAge=5, tagL0=T);
+	if (size(reproducingMales) == 0) {
+		catn("no reproducing males");	
+		// Force 1 male to have its flag set to True
+		luckyMale = p1.sampleIndividuals(1, sex="M", minAge=5);
+		luckyMale.tagL0 = T;
+	}
 }
 
 late() {
