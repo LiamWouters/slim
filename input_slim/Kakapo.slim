@@ -1,19 +1,29 @@
 initialize() {
 	// NOTE: The values defined here (besides 'effectDel' and 'MU') are still values Curro used in his example script 
-	defineConstantIfInteractive("populationLimit", 500000)	;
+	defineConstantIfInteractive("populationLimit", 500000);
 	
 	initializeSLiMModelType("nonWF");
 	initializeSex("X");
 	
-	defineConstantIfInteractive("effectDel", -0.00001);
-	initializeMutationType("m2", 0.5, "f", effectDel); // deleterious mutations
+	// Define classes of deletrius mutations
+	defineConstantIfInteractive("effectDel1", -0.00001); // Weakly deletrius
+	initializeMutationType("m1", 0.5, "f", effectDel1);
+	defineConstantIfInteractive("effectDel2", -0.005); // Moderately deletrius
+	initializeMutationType("m2", 0.5, "f", effectDel2);
+	defineConstantIfInteractive("effectDel3", -0.02); // Strongly deletrius
+	initializeMutationType("m3", 0.5, "f", effectDel3);
+	defineConstantIfInteractive("effectDel4", -0.06); // Very Strongly deletrius
+	initializeMutationType("m4", 0.5, "f", effectDel4);
 	
 	// Since we are only simulating the viability of the population,
 	// that mutation should not stop contributing after getting fixed. The easiest
 	// way to achieve that is to manually keep it as a mutation. 
+	m1.convertToSubstitution = F;
 	m2.convertToSubstitution = F;
+	m3.convertToSubstitution = F;
+	m4.convertToSubstitution = F;
 	
-	initializeGenomicElementType("g1", m2, 1.0);
+	initializeGenomicElementType("g1", c(m1,m2,m3,m4), c(0.25,0.25,0.25,0.25)); // TODO: for now all mutations have a similar chance to occur
 	// Length of the stretch of DNA we are simulating (base-pairs)
 	defineConstantIfInteractive("L", 1e6);
 	initializeGenomicElement(g1, 0, L);
@@ -32,6 +42,9 @@ initialize() {
 	
 	// Adult Kakapo Survival Rate
 	defineConstant("AdultSR", 0.996);
+	
+	// Constant defining how many individuals the habitat can support
+	defineConstantIfInteractive("K", 150);
 }
 
 // Defining the mating process
@@ -79,7 +92,7 @@ reproduction() {
 // We initialize the population with N individuals.
 1 first() {
 	defineConstantIfInteractive("N", 243); // Size of initial the population
-	defineConstantIfInteractive("RUNTIME", 600); // When to stop the simulation
+	defineConstantIfInteractive("RUNTIME", 10000); // When to stop the simulation
 	sim.addSubpop("p1", N);
 	// Set all individuals to a random age between 0-60
 	p1.individuals.age = rdunif(N, min=0, max=60);
@@ -116,6 +129,11 @@ early() {
 	// TODO: for now i just kill off all Kakapo's older than 60
 	tooOld = p1.subsetIndividuals(minAge=61);
 	tooOld.fitnessScaling = 0.0;
+	
+	// Calculate the "carrying capacity" of the habitat
+	// Meaning: too many individuals might lead to less resources from the environment per individual -> more deaths
+	//          less individuals might lead to more resources available for the individuals -> less deaths
+	p1.fitnessScaling = K / p1.individualCount; // TODO: see if there are better formulas to calculate this.
 }
 
 late() {
@@ -128,7 +146,7 @@ late() {
 		sim.simulationFinished();
 	}
 	inds = p1.individuals;
-	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")");
+	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")" + ", mean age: [" + mean(inds.age) + "]");
 }
 
 RUNTIME late() {sim.simulationFinished();}
