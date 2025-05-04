@@ -1,18 +1,18 @@
 initialize() {
 	// NOTE: The values defined here (besides 'effectDel' and 'MU') are still values Curro used in his example script 
-	defineConstantIfInteractive("populationLimit", 500000);
+	defineConstantIfNeeded("populationLimit", 500000);
 	
 	initializeSLiMModelType("nonWF");
 	initializeSex("X");
 	
 	// Define classes of deletrius mutations
-	defineConstantIfInteractive("effectDel1", -0.00001); // Weakly deletrius
+	defineConstantIfNeeded("effectDel1", -0.00001); // Weakly deletrius
 	initializeMutationType("m1", 0.5, "f", effectDel1);
-	defineConstantIfInteractive("effectDel2", -0.005); // Moderately deletrius
+	defineConstantIfNeeded("effectDel2", -0.005); // Moderately deletrius
 	initializeMutationType("m2", 0.5, "f", effectDel2);
-	defineConstantIfInteractive("effectDel3", -0.02); // Strongly deletrius
+	defineConstantIfNeeded("effectDel3", -0.02); // Strongly deletrius
 	initializeMutationType("m3", 0.5, "f", effectDel3);
-	defineConstantIfInteractive("effectDel4", -0.06); // Very Strongly deletrius
+	defineConstantIfNeeded("effectDel4", -0.06); // Very Strongly deletrius
 	initializeMutationType("m4", 0.5, "f", effectDel4);
 	
 	// Since we are only simulating the viability of the population,
@@ -25,13 +25,13 @@ initialize() {
 	
 	initializeGenomicElementType("g1", c(m1,m2,m3,m4), c(0.25,0.25,0.25,0.25)); // TODO: for now all mutations have a similar chance to occur
 	// Length of the stretch of DNA we are simulating (base-pairs)
-	defineConstantIfInteractive("L", 1e6);
+	defineConstantIfNeeded("L", 1e6);
 	initializeGenomicElement(g1, 0, L);
 	
-	defineConstantIfInteractive("MU", 9.18235294e-9); // Kakapo mutation rate
+	defineConstantIfNeeded("MU", 9.18235294e-9); // Kakapo mutation rate
 	initializeMutationRate(MU);
 	
-	defineConstantIfInteractive("RHO", 1e-8); // Recombination rate
+	defineConstantIfNeeded("RHO", 1e-8); // Recombination rate
 	initializeRecombinationRate(RHO);
 	
 	// Kakapo juvenile survival rates per age until adulthood:
@@ -44,7 +44,7 @@ initialize() {
 	defineConstant("AdultSR", 0.996);
 	
 	// Constant defining how many individuals the habitat can support
-	defineConstantIfInteractive("K", 20);
+	defineConstantIfNeeded("K", 20);
 }
 
 // Defining the mating process
@@ -91,8 +91,8 @@ reproduction() {
 
 // We initialize the population with N individuals.
 1 first() {
-	defineConstantIfInteractive("N", 243); // Size of initial the population
-	defineConstantIfInteractive("RUNTIME", 10000); // When to stop the simulation
+	defineConstantIfNeeded("N", 243); // Size of initial the population
+	defineConstantIfNeeded("RUNTIME", 10000); // When to stop the simulation
 	sim.addSubpop("p1", N);
 	// Set all individuals to a random age between 0-60
 	p1.individuals.age = rdunif(N, min=0, max=60);
@@ -188,4 +188,14 @@ function (void)defineConstantIfInteractive(string$ symbol, * value){
 	// executing from the GUI app. 
 	if (exists("slimgui"))
 		defineConstant(symbol, value);
+}
+
+function (void)defineConstantIfNotDefined(string$ symbol, * value){
+	if (!exists(symbol))
+		defineConstant(symbol, value);
+}
+
+function (void)defineConstantIfNeeded(string$ symbol, * value){
+    defineConstantIfInteractive(symbol, value);
+    defineConstantIfNotDefined(symbol, value);
 }

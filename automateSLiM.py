@@ -1,10 +1,13 @@
+import json
 import subprocess, argparse, os
 
 ## Script Arguments ##
 parser = argparse.ArgumentParser(prog="automateSLiM.py", description="This program allows a user to run a .slim simulation file multiple times.")
 
 # Input .slim file to run
-parser.add_argument("-f", "--file", action="store", help="Specify input simulation file", required=True)
+parser.add_argument("-f", "--file", action="store", help="Specify input simulation file (.slim)", required=True)
+# Input .json file to extract script parameters from
+parser.add_argument("-c", "--config", action="store", help="Specify input configuration file (.json)")
 # Number of simulations ran
 parser.add_argument("-n", action="store", help="Specify how many times to run the simulation, default is 10")
 # Output file
@@ -19,6 +22,7 @@ if type(NUM_SIMULATIONS) == str:
     NUM_SIMULATIONS = int(NUM_SIMULATIONS)
 OUTPUT_FILE = "./output_logs/" + (args.output or "log.txt")
 INPUT_FILE = args.file
+INPUT_CONFIG = args.config or None
 
 
 ## Error handling
@@ -50,16 +54,34 @@ def writeOutput(output: str, prefix: str = ""):
     f.close()
 
 
-## Run Simulations ##
-slim_program = ["slim", INPUT_FILE]
+## Read configuration ##
+if INPUT_CONFIG:
+    slim_program = ["slim", "-d"]
+    with open(INPUT_CONFIG) as file:
+        config: dict = json.loads(file.read())
+        if config.get("count"):
+            NUM_SIMULATIONS = config["count"]
+        if config.get("variables"):
+            for var in config["variables"].keys():
+                if config["variables"][var]["type"] == "list":
+                    slim_program.append([f"{var}={i}" for i in config["variables"][var]["values"]])
+                elif config["variables"][var]["type"] == "range":
+                    slim_program.append([f"{var}={i}" for i in range(config["variables"][var]["start"], config["variables"][var]["end"], config["variables"][var]["step"])])
+    slim_program.append(INPUT_FILE)
+else:
+    slim_program = ["slim", INPUT_FILE]
+
 output_log = ""
 
+
+## Run Simulations ##
 try:
     print("running simulations...")
     
     for i in range(NUM_SIMULATIONS):
         print("simulation: ", i+1)
-        result = subprocess.run(slim_program, capture_output=True)
+        arguments = [(arg[(i % len(arg))] if isinstance(arg, list) else arg) for arg in slim_program]
+        result = subprocess.run(arguments, capture_output=True)
         writeOutput(str(result.stdout, encoding="utf-8"), f"--> Simulation {i+1}\n")
     
     print("finished simulations")

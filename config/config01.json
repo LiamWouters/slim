@@ -1,0 +1,15 @@
+{
+  "count": 2,
+  "variables": {
+    "K": {
+      "type": "list",
+      "values": [20, 19, 18, 15, 5]
+    },
+    "N": {
+      "type": "range",
+      "start": 20,
+      "end": 10,
+      "step": -2
+    }
+  }
+}
