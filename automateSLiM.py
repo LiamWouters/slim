@@ -56,7 +56,7 @@ def writeOutput(output: str, prefix: str = ""):
 
 ## Read configuration ##
 if INPUT_CONFIG:
-    slim_program = ["slim", "-d"]
+    slim_program = ["slim"]
     with open(INPUT_CONFIG) as file:
         config: dict = json.loads(file.read())
         if config.get("count"):
@@ -64,9 +64,14 @@ if INPUT_CONFIG:
         if config.get("variables"):
             for var in config["variables"].keys():
                 if config["variables"][var]["type"] == "list":
-                    slim_program.append([f"{var}={i}" for i in config["variables"][var]["values"]])
+                    for i in config["variables"][var]["values"]:
+                        slim_program.append("-d")
+                        slim_program.append(f"{var}={i}")
                 elif config["variables"][var]["type"] == "range":
-                    slim_program.append([f"{var}={i}" for i in range(config["variables"][var]["start"], config["variables"][var]["end"], config["variables"][var]["step"])])
+                    for i in range(config["variables"][var]["start"], config["variables"][var]["end"],
+                                   config["variables"][var]["step"]):
+                        slim_program.append("-d")
+                        slim_program.append(f"{var}={i}")
     slim_program.append(INPUT_FILE)
 else:
     slim_program = ["slim", INPUT_FILE]
