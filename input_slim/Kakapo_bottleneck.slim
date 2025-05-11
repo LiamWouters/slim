@@ -5,7 +5,7 @@ initialize() {
 	initializeSex("X");
 	
 	// Define classes of deletrius mutations
-	defineConstantIfNeeded("effectDel1", -0.005);
+	defineConstantIfNeeded("effectDel1", -0.007);
 	initializeMutationType("m1", 0.5, "f", effectDel1);
 	
 	// Since we are only simulating the viability of the population,
@@ -18,7 +18,7 @@ initialize() {
 	defineConstantIfNeeded("L", 1e6);
 	initializeGenomicElement(g1, 0, L);
 	
-	defineConstantIfNeeded("MU", 9.18235294e-8); // Kakapo mutation rate
+	defineConstantIfNeeded("MU", 9.18235294e-8); // Kakapo mutation rate (10x)
 	initializeMutationRate(MU);
 	
 	defineConstantIfNeeded("RHO", 1e-8); // Recombination rate
@@ -163,7 +163,7 @@ late() {
 		defineConstant("phase2_final_pop_size", size(p1.individuals));
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length - 1) {
 		defineConstant("phase3_fitness", mean(p1.cachedFitness(NULL)));
-		defineConstant("phase2_final_pop_size", size(p1.individuals));
+		defineConstant("phase3_final_pop_size", size(p1.individuals));
 	}
 
 	if (p1.individualCount==0){
@@ -182,6 +182,9 @@ RUNTIME late() {
 	catn("Fitness after phase 1: " + phase1_fitness);
 	catn("Fitness after phase 2: " + phase2_fitness);
 	catn("Fitness after phase 3: " + phase3_fitness);
+	catn("Final phase 1 population size: " + phase1_final_pop_size);
+	catn("Final phase 2 population size: " + phase2_final_pop_size);
+	catn("Final phase 3 population size: " + phase3_final_pop_size);
 	sim.simulationFinished();	
 }
 
