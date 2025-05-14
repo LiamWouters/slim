@@ -23,7 +23,7 @@ initialize() {
 	m3.convertToSubstitution = F;
 	m4.convertToSubstitution = F;
 	
-	initializeGenomicElementType("g1", c(m1,m2,m3,m4), c(0.25,0.25,0.25,0.25)); // TODO: for now all mutations have a similar chance to occur
+	initializeGenomicElementType("g1", c(m1,m2,m3,m4), c(0.25,0.25,0.25,0.25));
 	// Length of the stretch of DNA we are simulating (base-pairs)
 	defineConstantIfNeeded("L", 1e6);
 	initializeGenomicElement(g1, 0, L);
@@ -126,14 +126,14 @@ early() {
 	maleAdultKakapo.fitnessScaling = AdultSR;
 	femaleAdultKakapo.fitnessScaling = AdultSR;
 	
-	// TODO: for now i just kill off all Kakapo's older than 60
+	// Kill off all Kakapo's older than 60
 	tooOld = p1.subsetIndividuals(minAge=61);
 	tooOld.fitnessScaling = 0.0;
 	
 	// Calculate the "carrying capacity" of the habitat
 	// Meaning: too many individuals might lead to less resources from the environment per individual -> more deaths
 	//          less individuals might lead to more resources available for the individuals -> less deaths
-	p1.fitnessScaling = K / p1.individualCount; // TODO: see if there are better formulas to calculate this.
+	p1.fitnessScaling = K / p1.individualCount;
 	
 	
 	// Recalculate male mating chance per simulation step: (so that not always the same males will mate)
