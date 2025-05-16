@@ -1,5 +1,6 @@
 import json
 import subprocess, argparse, os
+from statistics import mean
 
 ## Script Arguments ##
 parser = argparse.ArgumentParser(prog="automateSLiM.py", description="This program allows a user to run a .slim simulation file multiple times.")
@@ -12,6 +13,8 @@ parser.add_argument("-c", "--config", action="store", help="Specify input config
 parser.add_argument("-n", action="store", help="Specify how many times to run the simulation, default is 10")
 # Output file
 parser.add_argument("-o", "--output", action="store", help="Specify output file for simulation logs, default is log.txt")
+# Calculate average
+parser.add_argument("-ca", "--calculate", action="store_true", help="Should saved output values from different runs be compared? Default is false")
 # std out
 parser.add_argument("--std-out", action="store_true", help="Print output in console instead of output file")
 
@@ -45,12 +48,16 @@ if os.path.isfile(OUTPUT_FILE) and not args.std_out:
 
 ## extra functions
 def writeOutput(output: str, prefix: str = ""):
+    final_output = ""
+    for line in output.splitlines(keepends=True):
+        if not line.startswith("SAVED:"):
+            final_output += line
     if args.std_out:
-        print(prefix + output)
+        print(prefix + final_output)
         return
     
     f = open(OUTPUT_FILE, "a")
-    f.write(prefix + output)
+    f.write(prefix + final_output)
     f.close()
 
 
@@ -84,12 +91,29 @@ try:
     print("running simulations...")
     
     for i in range(NUM_SIMULATIONS):
-        print("simulation: ", i+1)
+        print("simulation:", i+1)
         arguments = [(arg[(i % len(arg))] if isinstance(arg, list) else arg) for arg in slim_program]
         result = subprocess.run(arguments, capture_output=True)
         writeOutput(str(result.stdout, encoding="utf-8"), f"--> Simulation {i+1}\n")
     
     print("finished simulations")
+
+    if args.calculate:
+        variables = {}
+        with open(OUTPUT_FILE, "r") as file:
+            for line in file:
+                if line.startswith("SAVED:"):
+                    variable = line.rstrip()[7:-1]
+                    variable = variable.split("=")
+                    if variable[1] == "NULL":
+                        continue
+                    if variable[0] not in variables:
+                        variables[variable[0]] = []
+                    variables[variable[0]].append(float(variable[1]))
+        with open(OUTPUT_FILE, "a") as file:
+            for key in list(variables.keys()):
+                var = mean(list(variables[key]))
+                file.write("Average of " + str(key) + ": " + str(var) + "\n")
     
 except FileNotFoundError:
     raise SystemError("'slim' is not installed or cannot be found")

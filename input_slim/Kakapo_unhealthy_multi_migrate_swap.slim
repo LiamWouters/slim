@@ -316,3 +316,7 @@ function (void)defineConstantIfNeeded(string$ symbol, * value){
 	defineConstantIfInteractive(symbol, value);
 	defineConstantIfNotDefined(symbol, value);
 }
+
+function (void)saveVariable(string$ name, * value){
+    catn("SAVED:{" + name + "=" + value + "}");
+}

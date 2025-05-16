@@ -242,23 +242,41 @@ MERGETIME early() {
 RUNTIME late() {
 	catn("--END OF RUN--");
 	catn("Fitness after phase 1: " + phase1_fitness);
+	saveVariable("phase1_fitness", phase1_fitness);
 	catn("Fitness after phase 2: " + phase2_fitness);
+	saveVariable("phase2_fitness", phase2_fitness);
 	catn("Fitness after phase 3: " + phase3_fitness);
+	saveVariable("phase3_fitness", phase3_fitness);
 	catn("Final phase 1 population size: " + phase1_final_pop_size);
+	saveVariable("phase1_final_pop_size", phase1_final_pop_size);
 	catn("Final phase 2 population size: " + phase2_final_pop_size);
+	saveVariable("phase2_final_pop_size", phase2_final_pop_size);
 	catn("Final phase 3 population size: " + phase3_final_pop_size);
+	saveVariable("phase3_final_pop_size", phase3_final_pop_size);
 	catn("Sum of del coeffs after phase 1: " + phase1_sum_coeffs);
+	saveVariable("phase1_sum_coeffs", phase1_sum_coeffs);
 	catn("Sum of del coeffs after phase 2: " + phase2_sum_coeffs);
+	saveVariable("phase2_sum_coeffs", phase2_sum_coeffs);
 	catn("Sum of del coeffs after phase 3: " + phase3_sum_coeffs);
+	saveVariable("phase3_sum_coeffs", phase3_sum_coeffs);
 	catn("P2 Fitness after phase 1: " + P2_phase1_fitness);
+	saveVariable("P2_phase1_fitness", P2_phase1_fitness);
 	catn("P2 Fitness after phase 2: " + P2_phase2_fitness);
+	saveVariable("P2_phase2_fitness", P2_phase2_fitness);
 	catn("P2 Fitness after phase 3: " + P2_phase3_fitness);
+	saveVariable("P2_phase3_fitness", P2_phase3_fitness);
 	catn("P2 Final phase 1 population size: " + P2_phase1_final_pop_size);
+	saveVariable("P2_phase1_final_pop_size", P2_phase1_final_pop_size);
 	catn("P2 Final phase 2 population size: " + P2_phase2_final_pop_size);
+	saveVariable("P2_phase2_final_pop_size", P2_phase2_final_pop_size);
 	catn("P2 Final phase 3 population size: " + P2_phase3_final_pop_size);
+	saveVariable("P2_phase3_final_pop_size", P2_phase3_final_pop_size);
 	catn("P2 Sum of del coeffs after phase 1: " + P2_phase1_sum_coeffs);
+	saveVariable("P2_phase1_sum_coeffs", P2_phase1_sum_coeffs);
 	catn("P2 Sum of del coeffs after phase 2: " + P2_phase2_sum_coeffs);
+	saveVariable("P2_phase2_sum_coeffs", P2_phase2_sum_coeffs);
 	catn("P2 Sum of del coeffs after phase 3: " + P2_phase3_sum_coeffs);
+	saveVariable("P2_phase3_sum_coeffs", P2_phase3_sum_coeffs);
 	
 	sim.simulationFinished();
 }
@@ -295,4 +313,8 @@ function (void)defineConstantIfNotDefined(string$ symbol, * value){
 function (void)defineConstantIfNeeded(string$ symbol, * value){
 	defineConstantIfInteractive(symbol, value);
 	defineConstantIfNotDefined(symbol, value);
+}
+
+function (void)saveVariable(string$ name, * value){
+    catn("SAVED:{" + name + "=" + value + "}");
 }
