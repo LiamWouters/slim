@@ -1,0 +1,300 @@
+initialize() {
+	defineConstantIfNeeded("populationLimit", 50000);
+	
+	initializeSLiMModelType("nonWF");
+	initializeSex("A");
+	
+	// Define classes of deletrius mutations
+	defineConstantIfNeeded("effectDel1", -0.007);
+	initializeMutationType("m1", 0.5, "f", effectDel1);
+	
+	// Since we are only simulating the viability of the population,
+	// that mutation should not stop contributing after getting fixed. The easiest
+	// way to achieve that is to manually keep it as a mutation. 
+	m1.convertToSubstitution = F;
+	
+	initializeGenomicElementType("g1", m1, 1);
+	// Length of the stretch of DNA we are simulating (base-pairs)
+	defineConstantIfNeeded("L", 1e6);
+	initializeGenomicElement(g1, 0, L);
+	
+	defineConstantIfNeeded("MU", 9.18235294e-8); // Kakapo mutation rate (10x)
+	initializeMutationRate(MU);
+	
+	defineConstantIfNeeded("RHO", 1e-8); // Recombination rate
+	initializeRecombinationRate(RHO);
+	
+	// Kakapo juvenile survival rates per age until adulthood:
+	// Male Juvenile Survival Rates
+	defineConstant("MaleJSR", c(0.7807, 0.7807, 0.7807, 0.7807, 0.7807));
+	// Female Juvenile Survival Rates
+	defineConstant("FemaleJSR", c(0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836, 0.8836));
+	
+	// Adult Kakapo Survival Rate
+	defineConstant("AdultSR", 0.996);
+	
+	// Constants defining how many individuals the habitat can support
+	defineConstantIfNeeded("K_initialise", 5000);
+	defineConstantIfNeeded("K_bottleneck", 50);
+	defineConstantIfNeeded("K_recovery", 5000);
+	defineConstantIfNeeded("phase1_initialise_length", 3000);
+	defineConstantIfNeeded("phase2_bottleneck_length", 30000);
+	defineConstantIfNeeded("phase3_recovery_length", 7500);
+	
+	// Constants for migration
+	defineConstantIfNeeded("MIGRATE_DELAY", 1500);
+	defineConstantIfNeeded("migrate_count", 10); // amount of individuals to migrate
+}
+
+// Defining the mating process
+reproduction() {
+	// Males can reproduce after the age of 5. Females after 10. (from this age we consider them adults)
+	// 1 generation every +-3 years. I will give each individual a chance to mate once every 3 years after reaching adulthood.
+	// 2-3 'eggs' per generation. (will randomly choose 2 or 3 and create that many offspring)
+	// 5/33 Males reproduce
+	
+	if (individual.sex == "F") {
+		// Female needs to be atleast 10 years old (adult)
+		if (individual.age < 10) {
+			return;
+		}
+		
+		// Check if this female is "ready" for a new generation. (1 generation every +-3 years)
+		if ((individual.age-10)%3 != 0.0) {
+			return; // not ready	
+		}
+		
+		// Search for a mate //
+		// Get an adult male as mate
+		// tagL0 is a boolean value that is either True or False (set at birth)
+		//		it has a 5/33 chance to be true.
+		adultMaleMate = subpop.sampleIndividuals(1, sex="M", minAge=5, tagL0=T);
+		if (adultMaleMate.size() == 0) {
+			return; // No mate found, cant reproduce		
+		}
+		
+		// create 2-3 offspring per gen
+		offspringCount =  rdunif(1, min=2, max=3); // Random number between 2-3 (eggs)
+		for (childNr in 1:offspringCount) {
+			child = subpop.addCrossed(individual, adultMaleMate);
+			
+			// Set reproduction tag for new child
+			if (child.sex == "M") {
+				child.tagL0 = F; // set to false at birth. will get recalculated per simulation step anyways.
+			} else {
+				child.tagL0 = T; // all females reproduce		
+			}
+		}
+	}
+}
+
+// We initialize the population with N individuals.
+1 first() {
+	// When to stop the simulation
+	defineConstant("RUNTIME", phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length);
+	defineConstant("MIGRATETIME", phase1_initialise_length + phase2_bottleneck_length + MIGRATE_DELAY);
+	
+	// Size of initial population
+	defineConstantIfNeeded("N", 243);
+	sim.addSubpop("p1", N);
+	// Size of initial second population
+	defineConstantIfNeeded("N2", 5000);
+	sim.addSubpop("p2", N2);
+	
+	// Set all individuals to a random age between 0-60
+	p1.individuals.age = rdunif(N, min=0, max=60);
+	p2.individuals.age = rdunif(N2, min=0, max=60);
+	
+	for (ind in c(p1.individuals, p2.individuals)) {
+		// Set reproduction tag for each individual
+		if (ind.sex == "M") {
+			ind.tagL0 = willReproduce(); // 5/33 males reproduce
+		} else {
+			ind.tagL0 = T; // all females reproduce		
+		}
+	}
+}
+
+early() {
+	// Calculate fitness population 1
+	//// Get all males younger than 5
+	maleJuveniles = c(p1.subsetIndividuals(sex="M", maxAge=4), p2.subsetIndividuals(sex="M", maxAge=4));
+	maleJuvAges = maleJuveniles.age;
+	maleJuvSurvival = MaleJSR[maleJuvAges];
+	maleJuveniles.fitnessScaling = maleJuvSurvival;
+	
+	//// Get all females younger than 10
+	femaleJuveniles = c(p1.subsetIndividuals(sex="F", maxAge=9), p2.subsetIndividuals(sex="F", maxAge=9));
+	femaleJuvAges = femaleJuveniles.age;
+	femaleJuvSurvival = FemaleJSR[femaleJuvAges];
+	femaleJuveniles.fitnessScaling = femaleJuvSurvival;
+	
+	// Set survival rates for all other Kakapo's:
+	maleAdultKakapo = c(p1.subsetIndividuals(sex="M", minAge=5), p2.subsetIndividuals(sex="M", minAge=5));
+	femaleAdultKakapo = c(p1.subsetIndividuals(sex="F", minAge=10), p2.subsetIndividuals(sex="F", minAge=10));
+	
+	maleAdultKakapo.fitnessScaling = AdultSR;
+	femaleAdultKakapo.fitnessScaling = AdultSR;
+	
+	// Kill off all Kakapo's older than 60
+	tooOld = c(p1.subsetIndividuals(minAge=61), p2.subsetIndividuals(minAge=61));
+	tooOld.fitnessScaling = 0.0;
+	
+	// Calculate the "carrying capacity" of the habitat
+	// Meaning: too many individuals might lead to less resources from the environment per individual -> more deaths
+	//          less individuals might lead to more resources available for the individuals -> less deaths
+	if (sim.cycle < phase1_initialise_length) {
+		p1.fitnessScaling = K_initialise / p1.individualCount;
+		p2.fitnessScaling = K_initialise / p2.individualCount;
+	} else if (sim.cycle < phase1_initialise_length + phase2_bottleneck_length) {
+		p1.fitnessScaling = K_bottleneck / p1.individualCount;
+		p2.fitnessScaling = K_bottleneck / p2.individualCount;
+	} else if (sim.cycle < phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length) {
+		p1.fitnessScaling = K_recovery / p1.individualCount;
+		p2.fitnessScaling = K_recovery / p2.individualCount;
+	}
+	
+	// Recalculate male mating chance per simulation step: (so that not always the same males will mate)
+	allMales = c(p1.subsetIndividuals(sex="M"), p2.subsetIndividuals(sex="M"));
+	for (male in allMales) {
+		male.tagL0	= willReproduce(); // 5/33 males reproduce. Give each male its 5/33 chance every year
+	}
+	// Check that at least 1 adult male has the flag set to True
+	reproducingMales = p1.subsetIndividuals(sex="M", minAge=5, tagL0=T);
+	if (size(reproducingMales) == 0) {
+		catn("no reproducing males");
+		// Force 1 male to have its flag set to True
+		luckyMale = p1.sampleIndividuals(1, sex="M", minAge=5);
+		luckyMale.tagL0 = T;
+	}
+	
+	// Check that at least 1 adult male has the flag set to True (population 2)
+	reproducingMalesP2 = p2.subsetIndividuals(sex="M", minAge=5, tagL0=T);
+	if (size(reproducingMalesP2) == 0) {
+		catn("no reproducing males P2");
+		// Force 1 male to have its flag set to True
+		luckyMale = p2.sampleIndividuals(1, sex="M", minAge=5);
+		luckyMale.tagL0 = T;
+	}
+}
+
+late() {
+	if (sim.cycle == phase1_initialise_length - 1) {
+		defineConstant("phase1_fitness", mean(p1.cachedFitness(NULL)));
+		defineConstant("phase1_final_pop_size", size(p1.individuals));
+		defineConstant("P2_phase1_fitness", mean(p2.cachedFitness(NULL)));
+		defineConstant("P2_phase1_final_pop_size", size(p2.individuals));
+		defineConstant(
+			"phase1_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
+		defineConstant(
+			"P2_phase1_sum_coeffs",
+			mean(p2.individuals.sumOfMutationsOfType(m1))
+		);
+	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length - 1) {
+		defineConstant("phase2_fitness", mean(p1.cachedFitness(NULL)));
+		defineConstant("phase2_final_pop_size", size(p1.individuals));
+		defineConstant("P2_phase2_fitness", mean(p2.cachedFitness(NULL)));
+		defineConstant("P2_phase2_final_pop_size", size(p2.individuals));
+		defineConstant(
+			"phase2_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
+		defineConstant(
+			"P2_phase2_sum_coeffs",
+			mean(p2.individuals.sumOfMutationsOfType(m1))
+		);
+	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length - 1) {
+		defineConstant("phase3_fitness", mean(p1.cachedFitness(NULL)));
+		defineConstant("phase3_final_pop_size", size(p1.individuals));
+		defineConstant("P2_phase3_fitness", mean(p2.cachedFitness(NULL)));
+		defineConstant("P2_phase3_final_pop_size", size(p2.individuals));
+		defineConstant(
+			"phase3_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
+		defineConstant(
+			"P2_phase3_sum_coeffs",
+			mean(p2.individuals.sumOfMutationsOfType(m1))
+		);
+	}
+	
+	if (p1.individualCount==0){
+		catn("Population 1 went extinct!");
+		sim.simulationFinished();
+	}
+	if (p1.individualCount>=populationLimit){
+		catn("Population 1 grew above limit of " + populationLimit + "!");
+		sim.simulationFinished();
+	}
+	if (p2.individualCount>=populationLimit){
+		catn("Population 2 grew above limit of " + populationLimit + "!");
+		sim.simulationFinished();
+	}
+	inds = p1.individuals;
+	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")" + ", mean age: [" + mean(inds.age) + "]");
+}
+
+MIGRATETIME early() {
+	// migrate p2 individuals to p1
+	migrants = p2.sampleIndividuals(migrate_count);
+	p1.takeMigrants(migrants);
+}
+
+RUNTIME late() {
+	catn("--END OF RUN--");
+	catn("Fitness after phase 1: " + phase1_fitness);
+	catn("Fitness after phase 2: " + phase2_fitness);
+	catn("Fitness after phase 3: " + phase3_fitness);
+	catn("Final phase 1 population size: " + phase1_final_pop_size);
+	catn("Final phase 2 population size: " + phase2_final_pop_size);
+	catn("Final phase 3 population size: " + phase3_final_pop_size);
+	catn("Sum of del coeffs after phase 1: " + phase1_sum_coeffs);
+	catn("Sum of del coeffs after phase 2: " + phase2_sum_coeffs);
+	catn("Sum of del coeffs after phase 3: " + phase3_sum_coeffs);
+	catn("P2 Fitness after phase 1: " + P2_phase1_fitness);
+	catn("P2 Fitness after phase 2: " + P2_phase2_fitness);
+	catn("P2 Fitness after phase 3: " + P2_phase3_fitness);
+	catn("P2 Final phase 1 population size: " + P2_phase1_final_pop_size);
+	catn("P2 Final phase 2 population size: " + P2_phase2_final_pop_size);
+	catn("P2 Final phase 3 population size: " + P2_phase3_final_pop_size);
+	catn("P2 Sum of del coeffs after phase 1: " + P2_phase1_sum_coeffs);
+	catn("P2 Sum of del coeffs after phase 2: " + P2_phase2_sum_coeffs);
+	catn("P2 Sum of del coeffs after phase 3: " + P2_phase3_sum_coeffs);
+	sim.simulationFinished();
+}
+
+
+///// HELPER FUNCTIONS /////
+function (logical)willReproduce(void) {
+	// Since 5/33 of male Kakapo's reproduce. 
+	// This function will return True with a 5/33 chance, False otherwise
+	x = rdunif(1, min=0, max=33); // Random number between 0-33	
+	if (x < 5) {
+		return T;
+	} else {
+		return F;
+	}
+}
+
+function (void)defineConstantIfInteractive(string$ symbol, * value){
+	// Ideally, we want to try many different combinations of parameters
+	// This is best done executing this model from the command line
+	// slim -d 'effectDel=-0.01' model.slim
+	// For interactive debugging, it's useful to hard-code the values
+	// This function is a wrapper that only defines the variable if
+	// executing from the GUI app. 
+	if (exists("slimgui"))
+		defineConstant(symbol, value);
+}
+
+function (void)defineConstantIfNotDefined(string$ symbol, * value){
+	if (!exists(symbol))
+		defineConstant(symbol, value);
+}
+
+function (void)defineConstantIfNeeded(string$ symbol, * value){
+	defineConstantIfInteractive(symbol, value);
+	defineConstantIfNotDefined(symbol, value);
+}

@@ -39,13 +39,13 @@ initialize() {
 	defineConstantIfNeeded("K_recovery", 5000);
 	defineConstantIfNeeded("phase1_initialise_length", 3000);
 	defineConstantIfNeeded("phase2_bottleneck_length", 30000);
-	defineConstantIfNeeded("phase3_recovery_length", 5000);
-	
-	// Constants for second population
-	defineConstantIfNeeded("K_population2", 5000);
+	defineConstantIfNeeded("phase3_recovery_length", 10000);
 	
 	// Constants for migration
-	defineConstantIfNeeded("migrate_count", 2); // amount of individuals to migrate
+	defineConstantIfNeeded("MIGRATE_1_DELAY", 1500);
+	defineConstantIfNeeded("MIGRATE_2_DELAY", 2500);
+	defineConstantIfNeeded("MIGRATE_2_DELAY", 2500);
+	defineConstantIfNeeded("migrate_count", 10); // amount of individuals to migrate
 }
 
 // Defining the mating process
@@ -94,7 +94,9 @@ reproduction() {
 1 first() {
 	// When to stop the simulation
 	defineConstant("RUNTIME", phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length);
-	defineConstant("MIGRATETIME", phase1_initialise_length + phase2_bottleneck_length);
+	defineConstant("MIGRATE_1_TIME", phase1_initialise_length + phase2_bottleneck_length + MIGRATE_1_DELAY);
+	defineConstant("MIGRATE_2_TIME", phase1_initialise_length + phase2_bottleneck_length + MIGRATE_1_DELAY + MIGRATE_2_DELAY);
+	defineConstant("MIGRATE_3_TIME", phase1_initialise_length + phase2_bottleneck_length + MIGRATE_1_DELAY + MIGRATE_2_DELAY + MIGRATE_3_DELAY);
 	
 	// Size of initial population
 	defineConstantIfNeeded("N", 243);
@@ -147,12 +149,14 @@ early() {
 	//          less individuals might lead to more resources available for the individuals -> less deaths
 	if (sim.cycle < phase1_initialise_length) {
 		p1.fitnessScaling = K_initialise / p1.individualCount;
+		p2.fitnessScaling = K_initialise / p2.individualCount;
 	} else if (sim.cycle < phase1_initialise_length + phase2_bottleneck_length) {
 		p1.fitnessScaling = K_bottleneck / p1.individualCount;
+		p2.fitnessScaling = K_bottleneck / p2.individualCount;
 	} else if (sim.cycle < phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length) {
 		p1.fitnessScaling = K_recovery / p1.individualCount;
+		p2.fitnessScaling = K_recovery / p2.individualCount;
 	}
-	p2.fitnessScaling = K_population2 / p2.individualCount;
 	
 	// Recalculate male mating chance per simulation step: (so that not always the same males will mate)
 	allMales = c(p1.subsetIndividuals(sex="M"), p2.subsetIndividuals(sex="M"));
@@ -236,11 +240,12 @@ late() {
 	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")" + ", mean age: [" + mean(inds.age) + "]");
 }
 
-// GENERATE p3 (merging)
-MIGRATETIME early() {
-	// migrate p2 individuals to p1
-	migrants = p2.sampleIndividuals(migrate_count);
-	p1.takeMigrants(migrants);
+MIGRATE_1_TIME early() {
+    doMigration();
+}
+
+MIGRATE_2_TIME early() {
+    doMigration();
 }
 
 RUNTIME late() {
@@ -268,6 +273,14 @@ RUNTIME late() {
 
 
 ///// HELPER FUNCTIONS /////
+function (void)doMigration(void) {
+    // Swap individuals across populations
+	P2_migrants = p2.sampleIndividuals(migrate_count);
+	P1_migrants = p1.sampleIndividuals(migrate_count);
+	p1.takeMigrants(P2_migrants);
+	p2.takeMigrants(P1_migrants);
+}
+
 function (logical)willReproduce(void) {
 	// Since 5/33 of male Kakapo's reproduce. 
 	// This function will return True with a 5/33 chance, False otherwise
