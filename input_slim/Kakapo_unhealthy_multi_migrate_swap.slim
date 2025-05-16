@@ -44,7 +44,7 @@ initialize() {
 	// Constants for migration
 	defineConstantIfNeeded("MIGRATE_1_DELAY", 1500);
 	defineConstantIfNeeded("MIGRATE_2_DELAY", 2500);
-	defineConstantIfNeeded("MIGRATE_2_DELAY", 2500);
+	defineConstantIfNeeded("MIGRATE_3_DELAY", 2500);
 	defineConstantIfNeeded("migrate_count", 10); // amount of individuals to migrate
 }
 
@@ -245,6 +245,10 @@ MIGRATE_1_TIME early() {
 }
 
 MIGRATE_2_TIME early() {
+    doMigration();
+}
+
+MIGRATE_3_TIME early() {
     doMigration();
 }
 
