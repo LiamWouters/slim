@@ -1,7 +1,7 @@
 # Files
 Here I will list usefull files, inputs that can be played with. What can be expected as output.
 
-### ./input_slim/**kakapo_bottleneck.slim**
+### ./input_slim/**kakapo_1_bottleneck.slim**
 
 **Important inputs:** (are defined in the script, but can be played with)
 

@@ -2,7 +2,7 @@ initialize() {
 	defineConstantIfNeeded("populationLimit", 50000);
 	
 	initializeSLiMModelType("nonWF");
-	initializeSex("X");
+	initializeSex("A");
 	
 	// Define classes of deletrius mutations
 	defineConstantIfNeeded("effectDel1", -0.007);
@@ -184,16 +184,40 @@ late() {
 		defineConstant("phase1_final_pop_size", size(p1.individuals));
 		defineConstant("P2_phase1_fitness", mean(p2.cachedFitness(NULL)));
 		defineConstant("P2_phase1_final_pop_size", size(p2.individuals));
+		defineConstant(
+			"phase1_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
+		defineConstant(
+			"P2_phase1_sum_coeffs",
+			mean(p2.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length - 1) {
 		defineConstant("phase2_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase2_final_pop_size", size(p1.individuals));
 		defineConstant("P2_phase2_fitness", mean(p2.cachedFitness(NULL)));
 		defineConstant("P2_phase2_final_pop_size", size(p2.individuals));
+		defineConstant(
+			"phase2_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
+		defineConstant(
+			"P2_phase2_sum_coeffs",
+			mean(p2.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length - 1) {
 		defineConstant("phase3_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase3_final_pop_size", size(p1.individuals));
 		defineConstant("P2_phase3_fitness", mean(p2.cachedFitness(NULL)));
 		defineConstant("P2_phase3_final_pop_size", size(p2.individuals));
+		defineConstant(
+			"phase3_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
+		defineConstant(
+			"P2_phase3_sum_coeffs",
+			mean(p2.individuals.sumOfMutationsOfType(m1))
+		);
 	}
 	
 	if (p1.individualCount==0){
@@ -227,12 +251,18 @@ RUNTIME late() {
 	catn("Final phase 1 population size: " + phase1_final_pop_size);
 	catn("Final phase 2 population size: " + phase2_final_pop_size);
 	catn("Final phase 3 population size: " + phase3_final_pop_size);
+	catn("Sum of del coeffs after phase 1: " + phase1_sum_coeffs);
+	catn("Sum of del coeffs after phase 2: " + phase2_sum_coeffs);
+	catn("Sum of del coeffs after phase 3: " + phase3_sum_coeffs);
 	catn("P2 Fitness after phase 1: " + P2_phase1_fitness);
 	catn("P2 Fitness after phase 2: " + P2_phase2_fitness);
 	catn("P2 Fitness after phase 3: " + P2_phase3_fitness);
 	catn("P2 Final phase 1 population size: " + P2_phase1_final_pop_size);
 	catn("P2 Final phase 2 population size: " + P2_phase2_final_pop_size);
 	catn("P2 Final phase 3 population size: " + P2_phase3_final_pop_size);
+	catn("P2 Sum of del coeffs after phase 1: " + P2_phase1_sum_coeffs);
+	catn("P2 Sum of del coeffs after phase 2: " + P2_phase2_sum_coeffs);
+	catn("P2 Sum of del coeffs after phase 3: " + P2_phase3_sum_coeffs);
 	sim.simulationFinished();
 }
 

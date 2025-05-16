@@ -2,7 +2,7 @@ initialize() {
 	defineConstantIfNeeded("populationLimit", 50000);
 	
 	initializeSLiMModelType("nonWF");
-	initializeSex("X");
+	initializeSex("A");
 	
 	// Define classes of deletrius mutations
 	defineConstantIfNeeded("effectDel1", -0.007);
@@ -170,24 +170,52 @@ late() {
 	if (sim.cycle == phase1_initialise_length - 1) {
 		defineConstant("phase1_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase1_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase1_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length - 1) {
 		defineConstant("phase2_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase2_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase2_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length - 1) {
 		defineConstant("phase3_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase3_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase3_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length + phase4_bottleneck_length - 1) {
 		defineConstant("phase4_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase4_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase4_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length + phase4_bottleneck_length + phase5_recovery_length - 1) {
 		defineConstant("phase5_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase5_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase5_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length + phase4_bottleneck_length + phase5_recovery_length + phase6_bottleneck_length - 1) {
 		defineConstant("phase6_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase6_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase6_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length + phase4_bottleneck_length + phase5_recovery_length + phase6_bottleneck_length + phase7_recovery_length - 1) {
 		defineConstant("phase7_fitness", mean(p1.cachedFitness(NULL)));
 		defineConstant("phase7_final_pop_size", size(p1.individuals));
+		defineConstant(
+			"phase7_sum_coeffs",
+			mean(p1.individuals.sumOfMutationsOfType(m1))
+		);
 	}
 
 	if (p1.individualCount==0){
@@ -218,6 +246,14 @@ RUNTIME late() {
 	catn("Final phase 5 population size: " + phase5_final_pop_size);
 	catn("Final phase 6 population size: " + phase6_final_pop_size);
 	catn("Final phase 7 population size: " + phase7_final_pop_size);
+	catn("Sum of del coeffs after phase 1: " + phase1_sum_coeffs);
+	catn("Sum of del coeffs after phase 2: " + phase2_sum_coeffs);
+	catn("Sum of del coeffs after phase 3: " + phase3_sum_coeffs);
+	catn("Sum of del coeffs after phase 4: " + phase4_sum_coeffs);
+	catn("Sum of del coeffs after phase 5: " + phase5_sum_coeffs);
+	catn("Sum of del coeffs after phase 6: " + phase6_sum_coeffs);
+	catn("Sum of del coeffs after phase 7: " + phase7_sum_coeffs);
+	
 	sim.simulationFinished();	
 }
 

@@ -4,7 +4,7 @@ initialize() {
 	initializeSLiMModelType("nonWF");
 	initializeSex("A");
 	
-	// Define classes of deletrius mutations
+	// Define classes of deleterious mutations
 	defineConstantIfNeeded("effectDel1", -0.007);
 	initializeMutationType("m1", 0.5, "f", effectDel1);
 	
@@ -33,16 +33,13 @@ initialize() {
 	// Adult Kakapo Survival Rate
 	defineConstant("AdultSR", 0.996);
 	
-	// Constants defining how many individuals the habitat can support
+	// Constant defining how many individuals the habitat can support
 	defineConstantIfNeeded("K_initialise", 5000);
 	defineConstantIfNeeded("K_bottleneck", 50);
 	defineConstantIfNeeded("K_recovery", 5000);
 	defineConstantIfNeeded("phase1_initialise_length", 3000);
 	defineConstantIfNeeded("phase2_bottleneck_length", 10000);
 	defineConstantIfNeeded("phase3_recovery_length", 5000);
-	
-	// Constants for second population
-	defineConstantIfNeeded("K_population2", 5000);
 }
 
 // Defining the mating process
@@ -89,22 +86,17 @@ reproduction() {
 
 // We initialize the population with N individuals.
 1 first() {
+	// Size of initial the population
+	defineConstantIfNeeded("N", 243);
 	// When to stop the simulation
 	defineConstant("RUNTIME", phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length);
-	defineConstant("MERGETIME", phase1_initialise_length + phase2_bottleneck_length);
 	
-	// Size of initial population
-	defineConstantIfNeeded("N", 243);
 	sim.addSubpop("p1", N);
-	// Size of initial second population
-	defineConstantIfNeeded("N2", 5000);
-	sim.addSubpop("p2", N2);
-	
 	// Set all individuals to a random age between 0-60
 	p1.individuals.age = rdunif(N, min=0, max=60);
-	p2.individuals.age = rdunif(N2, min=0, max=60);
 	
-	for (ind in c(p1.individuals, p2.individuals)) {
+	
+	for (ind in p1.individuals) {
 		// Set reproduction tag for each individual
 		if (ind.sex == "M") {
 			ind.tagL0 = willReproduce(); // 5/33 males reproduce
@@ -114,29 +106,28 @@ reproduction() {
 	}
 }
 
+
 early() {
-	// Calculate fitness population 1
-	//// Get all males younger than 5
-	maleJuveniles = c(p1.subsetIndividuals(sex="M", maxAge=4), p2.subsetIndividuals(sex="M", maxAge=4));
+	// Calculate fitness
+	maleJuveniles = p1.subsetIndividuals(sex="M", maxAge=4);	// Get all males younger than 5
 	maleJuvAges = maleJuveniles.age;
 	maleJuvSurvival = MaleJSR[maleJuvAges];
 	maleJuveniles.fitnessScaling = maleJuvSurvival;
 	
-	//// Get all females younger than 10
-	femaleJuveniles = c(p1.subsetIndividuals(sex="F", maxAge=9), p2.subsetIndividuals(sex="F", maxAge=9));
+	femaleJuveniles = p1.subsetIndividuals(sex="F", maxAge=9); // Get all females younger than 10
 	femaleJuvAges = femaleJuveniles.age;
 	femaleJuvSurvival = FemaleJSR[femaleJuvAges];
 	femaleJuveniles.fitnessScaling = femaleJuvSurvival;
 	
 	// Set survival rates for all other Kakapo's:
-	maleAdultKakapo = c(p1.subsetIndividuals(sex="M", minAge=5), p2.subsetIndividuals(sex="M", minAge=5));
-	femaleAdultKakapo = c(p1.subsetIndividuals(sex="F", minAge=10), p2.subsetIndividuals(sex="F", minAge=10));
+	maleAdultKakapo = p1.subsetIndividuals(sex="M", minAge=5);
+	femaleAdultKakapo = p1.subsetIndividuals(sex="F", minAge=10);
 	
 	maleAdultKakapo.fitnessScaling = AdultSR;
 	femaleAdultKakapo.fitnessScaling = AdultSR;
 	
 	// Kill off all Kakapo's older than 60
-	tooOld = c(p1.subsetIndividuals(minAge=61), p2.subsetIndividuals(minAge=61));
+	tooOld = p1.subsetIndividuals(minAge=61);
 	tooOld.fitnessScaling = 0.0;
 	
 	// Calculate the "carrying capacity" of the habitat
@@ -149,14 +140,14 @@ early() {
 	} else if (sim.cycle < phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length) {
 		p1.fitnessScaling = K_recovery / p1.individualCount;
 	}
-	p2.fitnessScaling = K_population2 / p2.individualCount;
 	
 	// Recalculate male mating chance per simulation step: (so that not always the same males will mate)
-	allMales = c(p1.subsetIndividuals(sex="M"), p2.subsetIndividuals(sex="M"));
+	allMales = p1.subsetIndividuals(sex="M");
 	for (male in allMales) {
 		male.tagL0	= willReproduce(); // 5/33 males reproduce. Give each male its 5/33 chance every year
 	}
-	// Check that at least 1 adult male has the flag set to True
+	
+	// Check that at least 1 adult male has the flag set to True	
 	reproducingMales = p1.subsetIndividuals(sex="M", minAge=5, tagL0=T);
 	if (size(reproducingMales) == 0) {
 		catn("no reproducing males");
@@ -164,79 +155,42 @@ early() {
 		luckyMale = p1.sampleIndividuals(1, sex="M", minAge=5);
 		luckyMale.tagL0 = T;
 	}
-	
-	// Check that at least 1 adult male has the flag set to True (population 2)
-	reproducingMalesP2 = p2.subsetIndividuals(sex="M", minAge=5, tagL0=T);
-	if (size(reproducingMalesP2) == 0) {
-		catn("no reproducing males P2");
-		// Force 1 male to have its flag set to True
-		luckyMale = p2.sampleIndividuals(1, sex="M", minAge=5);
-		luckyMale.tagL0 = T;
-	}
 }
 
 late() {
 	if (sim.cycle == phase1_initialise_length - 1) {
 		defineConstant("phase1_fitness", mean(p1.cachedFitness(NULL)));
-		defineConstant("phase1_final_pop_size", size(p1.individuals));
-		defineConstant("P2_phase1_fitness", mean(p2.cachedFitness(NULL)));
-		defineConstant("P2_phase1_final_pop_size", size(p2.individuals));
 		defineConstant(
 			"phase1_sum_coeffs",
 			mean(p1.individuals.sumOfMutationsOfType(m1))
-		);
-		defineConstant(
-			"P2_phase1_sum_coeffs",
-			mean(p2.individuals.sumOfMutationsOfType(m1))
-		);
+			);
+		defineConstant("phase1_final_pop_size", size(p1.individuals));
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length - 1) {
 		defineConstant("phase2_fitness", mean(p1.cachedFitness(NULL)));
-		defineConstant("phase2_final_pop_size", size(p1.individuals));
-		defineConstant("P2_phase2_fitness", mean(p2.cachedFitness(NULL)));
-		defineConstant("P2_phase2_final_pop_size", size(p2.individuals));
 		defineConstant(
 			"phase2_sum_coeffs",
 			mean(p1.individuals.sumOfMutationsOfType(m1))
-		);
-		defineConstant(
-			"P2_phase2_sum_coeffs",
-			mean(p2.individuals.sumOfMutationsOfType(m1))
-		);
+			);
+		defineConstant("phase2_final_pop_size", size(p1.individuals));
 	} else if (sim.cycle == phase1_initialise_length + phase2_bottleneck_length + phase3_recovery_length - 1) {
 		defineConstant("phase3_fitness", mean(p1.cachedFitness(NULL)));
-		defineConstant("phase3_final_pop_size", size(p1.individuals));
-		defineConstant("P2_phase3_fitness", mean(p2.cachedFitness(NULL)));
-		defineConstant("P2_phase3_final_pop_size", size(p2.individuals));
 		defineConstant(
 			"phase3_sum_coeffs",
 			mean(p1.individuals.sumOfMutationsOfType(m1))
-		);
-		defineConstant(
-			"P2_phase3_sum_coeffs",
-			mean(p2.individuals.sumOfMutationsOfType(m1))
-		);
+			);
+		defineConstant("phase3_final_pop_size", size(p1.individuals));
 	}
 	
 	if (p1.individualCount==0){
-		catn("Population 1 went extinct!");
+		catn("Population went extinct!");
 		sim.simulationFinished();
 	}
 	if (p1.individualCount>=populationLimit){
-		catn("Population 1 grew above limit of " + populationLimit + "!");
-		sim.simulationFinished();
-	}
-	if (p2.individualCount>=populationLimit){
-		catn("Population 2 grew above limit of " + populationLimit + "!");
+		catn("Population grew above limit of " + populationLimit + "!");
 		sim.simulationFinished();
 	}
 	inds = p1.individuals;
 	catn(sim.cycle + ": " + size(inds) + " (" + max(inds.age) + ")" + ", mean age: [" + mean(inds.age) + "]");
-}
-
-// GENERATE p3 (merging)
-MERGETIME early() {
-	// migrate all p2 individuals to p1
-	p1.takeMigrants(p2.individuals);
 }
 
 RUNTIME late() {
@@ -249,16 +203,7 @@ RUNTIME late() {
 	catn("Final phase 3 population size: " + phase3_final_pop_size);
 	catn("Sum of del coeffs after phase 1: " + phase1_sum_coeffs);
 	catn("Sum of del coeffs after phase 2: " + phase2_sum_coeffs);
-	catn("Sum of del coeffs after phase 3: " + phase3_sum_coeffs);
-	catn("P2 Fitness after phase 1: " + P2_phase1_fitness);
-	catn("P2 Fitness after phase 2: " + P2_phase2_fitness);
-	catn("P2 Fitness after phase 3: " + P2_phase3_fitness);
-	catn("P2 Final phase 1 population size: " + P2_phase1_final_pop_size);
-	catn("P2 Final phase 2 population size: " + P2_phase2_final_pop_size);
-	catn("P2 Final phase 3 population size: " + P2_phase3_final_pop_size);
-	catn("P2 Sum of del coeffs after phase 1: " + P2_phase1_sum_coeffs);
-	catn("P2 Sum of del coeffs after phase 2: " + P2_phase2_sum_coeffs);
-	catn("P2 Sum of del coeffs after phase 3: " + P2_phase3_sum_coeffs);
+	catn("Sum of del coeffs  after phase 3: " + phase2_sum_coeffs);
 	
 	sim.simulationFinished();
 }
