@@ -1,5 +1,5 @@
 # Files
-Here I will list usefull files, inputs that can be played with. What can be expected as output.
+Here I will list useful files, inputs that can be played with. What can be expected as output.
 
 ### ./input_slim/**kakapo_1_bottleneck.slim**
 
