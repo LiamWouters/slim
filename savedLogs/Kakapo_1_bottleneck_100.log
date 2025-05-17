@@ -1,0 +1,1009 @@
+--> Simulation 1
+SAVED:{phase1_fitness=0.860998}
+SAVED:{phase2_fitness=0.799797}
+SAVED:{phase3_fitness=0.856025}
+SAVED:{phase1_final_pop_size=4518}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=4264}
+SAVED:{phase1_sum_del_coeffs=-0.0183785}
+SAVED:{phase2_sum_del_coeffs=-0.138727}
+SAVED:{phase3_sum_del_coeffs=-0.128645}
+--> Simulation 2
+SAVED:{phase1_fitness=0.856863}
+SAVED:{phase2_fitness=1.081}
+SAVED:{phase3_fitness=0.840128}
+SAVED:{phase1_final_pop_size=4522}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3990}
+SAVED:{phase1_sum_del_coeffs=-0.0194969}
+SAVED:{phase2_sum_del_coeffs=-0.233395}
+SAVED:{phase3_sum_del_coeffs=-0.242211}
+--> Simulation 3
+SAVED:{phase1_fitness=0.859432}
+SAVED:{phase2_fitness=1.18101}
+SAVED:{phase3_fitness=0.838245}
+SAVED:{phase1_final_pop_size=4504}
+SAVED:{phase2_final_pop_size=33}
+SAVED:{phase3_final_pop_size=3875}
+SAVED:{phase1_sum_del_coeffs=-0.0182973}
+SAVED:{phase2_sum_del_coeffs=-0.291879}
+SAVED:{phase3_sum_del_coeffs=-0.29902}
+--> Simulation 4
+SAVED:{phase1_fitness=0.873454}
+SAVED:{phase2_fitness=0.900564}
+SAVED:{phase3_fitness=0.849709}
+SAVED:{phase1_final_pop_size=4511}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4029}
+SAVED:{phase1_sum_del_coeffs=-0.0181137}
+SAVED:{phase2_sum_del_coeffs=-0.23835}
+SAVED:{phase3_sum_del_coeffs=-0.228649}
+--> Simulation 5
+SAVED:{phase1_fitness=0.85136}
+SAVED:{phase2_fitness=0.871758}
+SAVED:{phase3_fitness=0.858991}
+SAVED:{phase1_final_pop_size=4508}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4145}
+SAVED:{phase1_sum_del_coeffs=-0.0167795}
+SAVED:{phase2_sum_del_coeffs=-0.147}
+SAVED:{phase3_sum_del_coeffs=-0.158582}
+--> Simulation 6
+SAVED:{phase1_fitness=0.877427}
+SAVED:{phase2_fitness=1.12338}
+SAVED:{phase3_fitness=0.844986}
+SAVED:{phase1_final_pop_size=4508}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=4159}
+SAVED:{phase1_sum_del_coeffs=-0.017396}
+SAVED:{phase2_sum_del_coeffs=-0.243444}
+SAVED:{phase3_sum_del_coeffs=-0.184286}
+--> Simulation 7
+SAVED:{phase1_fitness=0.8753}
+SAVED:{phase2_fitness=0.746494}
+SAVED:{phase3_fitness=0.850692}
+SAVED:{phase1_final_pop_size=4531}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4150}
+SAVED:{phase1_sum_del_coeffs=-0.0185714}
+SAVED:{phase2_sum_del_coeffs=-0.179667}
+SAVED:{phase3_sum_del_coeffs=-0.157045}
+--> Simulation 8
+SAVED:{phase1_fitness=0.86511}
+SAVED:{phase2_fitness=0.764316}
+SAVED:{phase3_fitness=0.857555}
+SAVED:{phase1_final_pop_size=4502}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4032}
+SAVED:{phase1_sum_del_coeffs=-0.0177845}
+SAVED:{phase2_sum_del_coeffs=-0.22505}
+SAVED:{phase3_sum_del_coeffs=-0.214642}
+--> Simulation 9
+SAVED:{phase1_fitness=0.850279}
+SAVED:{phase2_fitness=0.740406}
+SAVED:{phase3_fitness=0.85084}
+SAVED:{phase1_final_pop_size=4503}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=4112}
+SAVED:{phase1_sum_del_coeffs=-0.0185252}
+SAVED:{phase2_sum_del_coeffs=-0.205333}
+SAVED:{phase3_sum_del_coeffs=-0.201119}
+--> Simulation 10
+SAVED:{phase1_fitness=0.852749}
+SAVED:{phase2_fitness=0.875231}
+SAVED:{phase3_fitness=0.857992}
+SAVED:{phase1_final_pop_size=4505}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4039}
+SAVED:{phase1_sum_del_coeffs=-0.0180151}
+SAVED:{phase2_sum_del_coeffs=-0.244}
+SAVED:{phase3_sum_del_coeffs=-0.21483}
+--> Simulation 11
+SAVED:{phase1_fitness=0.85928}
+SAVED:{phase2_fitness=0.822048}
+SAVED:{phase3_fitness=0.857821}
+SAVED:{phase1_final_pop_size=4516}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=4071}
+SAVED:{phase1_sum_del_coeffs=-0.0183308}
+SAVED:{phase2_sum_del_coeffs=-0.225366}
+SAVED:{phase3_sum_del_coeffs=-0.214017}
+--> Simulation 12
+SAVED:{phase1_fitness=0.841474}
+SAVED:{phase2_fitness=0.975609}
+SAVED:{phase3_fitness=0.860206}
+SAVED:{phase1_final_pop_size=4499}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=4212}
+SAVED:{phase1_sum_del_coeffs=-0.0177606}
+SAVED:{phase2_sum_del_coeffs=-0.1505}
+SAVED:{phase3_sum_del_coeffs=-0.143711}
+--> Simulation 13
+SAVED:{phase1_fitness=0.859014}
+SAVED:{phase2_fitness=0.922812}
+SAVED:{phase3_fitness=0.840875}
+SAVED:{phase1_final_pop_size=4478}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=3954}
+SAVED:{phase1_sum_del_coeffs=-0.0176516}
+SAVED:{phase2_sum_del_coeffs=-0.256439}
+SAVED:{phase3_sum_del_coeffs=-0.257509}
+--> Simulation 14
+SAVED:{phase1_fitness=0.852064}
+SAVED:{phase2_fitness=0.973751}
+SAVED:{phase3_fitness=0.8652}
+SAVED:{phase1_final_pop_size=4514}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4018}
+SAVED:{phase1_sum_del_coeffs=-0.017193}
+SAVED:{phase2_sum_del_coeffs=-0.267974}
+SAVED:{phase3_sum_del_coeffs=-0.268075}
+--> Simulation 15
+SAVED:{phase1_fitness=0.855033}
+SAVED:{phase2_fitness=0.695401}
+SAVED:{phase3_fitness=0.853791}
+SAVED:{phase1_final_pop_size=4478}
+SAVED:{phase2_final_pop_size=34}
+SAVED:{phase3_final_pop_size=3971}
+SAVED:{phase1_sum_del_coeffs=-0.019257}
+SAVED:{phase2_sum_del_coeffs=-0.281235}
+SAVED:{phase3_sum_del_coeffs=-0.273337}
+--> Simulation 16
+SAVED:{phase1_fitness=0.846699}
+SAVED:{phase2_fitness=0.828592}
+SAVED:{phase3_fitness=0.857859}
+SAVED:{phase1_final_pop_size=4453}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=4006}
+SAVED:{phase1_sum_del_coeffs=-0.0190004}
+SAVED:{phase2_sum_del_coeffs=-0.246537}
+SAVED:{phase3_sum_del_coeffs=-0.222141}
+--> Simulation 17
+SAVED:{phase1_fitness=0.870558}
+SAVED:{phase2_fitness=0.894228}
+SAVED:{phase3_fitness=0.857878}
+SAVED:{phase1_final_pop_size=4479}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=3932}
+SAVED:{phase1_sum_del_coeffs=-0.0192762}
+SAVED:{phase2_sum_del_coeffs=-0.282333}
+SAVED:{phase3_sum_del_coeffs=-0.28413}
+--> Simulation 18
+SAVED:{phase1_fitness=0.850195}
+SAVED:{phase2_fitness=1.00013}
+SAVED:{phase3_fitness=0.839401}
+SAVED:{phase1_final_pop_size=4483}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4100}
+SAVED:{phase1_sum_del_coeffs=-0.0179598}
+SAVED:{phase2_sum_del_coeffs=-0.24141}
+SAVED:{phase3_sum_del_coeffs=-0.200543}
+--> Simulation 19
+SAVED:{phase1_fitness=0.84818}
+SAVED:{phase2_fitness=0.799038}
+SAVED:{phase3_fitness=0.846981}
+SAVED:{phase1_final_pop_size=4445}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3813}
+SAVED:{phase1_sum_del_coeffs=-0.018652}
+SAVED:{phase2_sum_del_coeffs=-0.353868}
+SAVED:{phase3_sum_del_coeffs=-0.325292}
+--> Simulation 20
+SAVED:{phase1_fitness=0.880605}
+SAVED:{phase2_fitness=0.916247}
+SAVED:{phase3_fitness=0.863779}
+SAVED:{phase1_final_pop_size=4484}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=4164}
+SAVED:{phase1_sum_del_coeffs=-0.0193374}
+SAVED:{phase2_sum_del_coeffs=-0.182921}
+SAVED:{phase3_sum_del_coeffs=-0.185863}
+--> Simulation 21
+SAVED:{phase1_fitness=0.854167}
+SAVED:{phase2_fitness=0.8928}
+SAVED:{phase3_fitness=0.851712}
+SAVED:{phase1_final_pop_size=4502}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4295}
+SAVED:{phase1_sum_del_coeffs=-0.0186646}
+SAVED:{phase2_sum_del_coeffs=-0.122231}
+SAVED:{phase3_sum_del_coeffs=-0.1167}
+--> Simulation 22
+SAVED:{phase1_fitness=0.846642}
+SAVED:{phase2_fitness=0.918153}
+SAVED:{phase3_fitness=0.850546}
+SAVED:{phase1_final_pop_size=4483}
+SAVED:{phase2_final_pop_size=45}
+SAVED:{phase3_final_pop_size=4184}
+SAVED:{phase1_sum_del_coeffs=-0.0194604}
+SAVED:{phase2_sum_del_coeffs=-0.166444}
+SAVED:{phase3_sum_del_coeffs=-0.172517}
+--> Simulation 23
+SAVED:{phase1_fitness=0.870164}
+SAVED:{phase2_fitness=0.84763}
+SAVED:{phase3_fitness=0.852059}
+SAVED:{phase1_final_pop_size=4462}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=4093}
+SAVED:{phase1_sum_del_coeffs=-0.0171313}
+SAVED:{phase2_sum_del_coeffs=-0.210477}
+SAVED:{phase3_sum_del_coeffs=-0.199439}
+--> Simulation 24
+SAVED:{phase1_fitness=0.867418}
+SAVED:{phase2_fitness=0.827139}
+SAVED:{phase3_fitness=0.861119}
+SAVED:{phase1_final_pop_size=4503}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3993}
+SAVED:{phase1_sum_del_coeffs=-0.018135}
+SAVED:{phase2_sum_del_coeffs=-0.285526}
+SAVED:{phase3_sum_del_coeffs=-0.240924}
+--> Simulation 25
+SAVED:{phase1_fitness=0.866425}
+SAVED:{phase2_fitness=0.964785}
+SAVED:{phase3_fitness=0.841624}
+SAVED:{phase1_final_pop_size=4478}
+SAVED:{phase2_final_pop_size=34}
+SAVED:{phase3_final_pop_size=3868}
+SAVED:{phase1_sum_del_coeffs=-0.0178064}
+SAVED:{phase2_sum_del_coeffs=-0.303882}
+SAVED:{phase3_sum_del_coeffs=-0.310421}
+--> Simulation 26
+SAVED:{phase1_fitness=0.843552}
+SAVED:{phase2_fitness=0.864472}
+SAVED:{phase3_fitness=0.867503}
+SAVED:{phase1_final_pop_size=4519}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4177}
+SAVED:{phase1_sum_del_coeffs=-0.018235}
+SAVED:{phase2_sum_del_coeffs=-0.180385}
+SAVED:{phase3_sum_del_coeffs=-0.17169}
+--> Simulation 27
+SAVED:{phase1_fitness=0.86517}
+SAVED:{phase2_fitness=0.845408}
+SAVED:{phase3_fitness=0.850455}
+SAVED:{phase1_final_pop_size=4524}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4138}
+SAVED:{phase1_sum_del_coeffs=-0.0178481}
+SAVED:{phase2_sum_del_coeffs=-0.198833}
+SAVED:{phase3_sum_del_coeffs=-0.186794}
+--> Simulation 28
+SAVED:{phase1_fitness=0.860557}
+SAVED:{phase2_fitness=0.863065}
+SAVED:{phase3_fitness=0.850381}
+SAVED:{phase1_final_pop_size=4443}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=4191}
+SAVED:{phase1_sum_del_coeffs=-0.0181909}
+SAVED:{phase2_sum_del_coeffs=-0.157585}
+SAVED:{phase3_sum_del_coeffs=-0.157773}
+--> Simulation 29
+SAVED:{phase1_fitness=0.848623}
+SAVED:{phase2_fitness=0.774755}
+SAVED:{phase3_fitness=0.856388}
+SAVED:{phase1_final_pop_size=4517}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=4037}
+SAVED:{phase1_sum_del_coeffs=-0.0187886}
+SAVED:{phase2_sum_del_coeffs=-0.240947}
+SAVED:{phase3_sum_del_coeffs=-0.230065}
+--> Simulation 30
+SAVED:{phase1_fitness=0.853334}
+SAVED:{phase2_fitness=0.72793}
+SAVED:{phase3_fitness=0.872205}
+SAVED:{phase1_final_pop_size=4481}
+SAVED:{phase2_final_pop_size=45}
+SAVED:{phase3_final_pop_size=4246}
+SAVED:{phase1_sum_del_coeffs=-0.0168603}
+SAVED:{phase2_sum_del_coeffs=-0.139533}
+SAVED:{phase3_sum_del_coeffs=-0.13176}
+--> Simulation 31
+SAVED:{phase1_fitness=0.842874}
+SAVED:{phase2_fitness=0.883304}
+SAVED:{phase3_fitness=0.867198}
+SAVED:{phase1_final_pop_size=4453}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4049}
+SAVED:{phase1_sum_del_coeffs=-0.0170952}
+SAVED:{phase2_sum_del_coeffs=-0.261154}
+SAVED:{phase3_sum_del_coeffs=-0.227871}
+--> Simulation 32
+SAVED:{phase1_fitness=0.858023}
+SAVED:{phase2_fitness=0.7404}
+SAVED:{phase3_fitness=0.868786}
+SAVED:{phase1_final_pop_size=4500}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=3883}
+SAVED:{phase1_sum_del_coeffs=-0.0191147}
+SAVED:{phase2_sum_del_coeffs=-0.3108}
+SAVED:{phase3_sum_del_coeffs=-0.299273}
+--> Simulation 33
+SAVED:{phase1_fitness=0.853576}
+SAVED:{phase2_fitness=1.03718}
+SAVED:{phase3_fitness=0.858968}
+SAVED:{phase1_final_pop_size=4462}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4216}
+SAVED:{phase1_sum_del_coeffs=-0.0187001}
+SAVED:{phase2_sum_del_coeffs=-0.1603}
+SAVED:{phase3_sum_del_coeffs=-0.142736}
+--> Simulation 34
+SAVED:{phase1_fitness=0.854418}
+SAVED:{phase2_fitness=0.967344}
+SAVED:{phase3_fitness=0.871007}
+SAVED:{phase1_final_pop_size=4534}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4095}
+SAVED:{phase1_sum_del_coeffs=-0.0181654}
+SAVED:{phase2_sum_del_coeffs=-0.20659}
+SAVED:{phase3_sum_del_coeffs=-0.198831}
+--> Simulation 35
+SAVED:{phase1_fitness=0.843718}
+SAVED:{phase2_fitness=0.833939}
+SAVED:{phase3_fitness=0.845501}
+SAVED:{phase1_final_pop_size=4457}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=4009}
+SAVED:{phase1_sum_del_coeffs=-0.0189488}
+SAVED:{phase2_sum_del_coeffs=-0.225105}
+SAVED:{phase3_sum_del_coeffs=-0.230497}
+--> Simulation 36
+SAVED:{phase1_fitness=0.861235}
+SAVED:{phase2_fitness=0.797908}
+SAVED:{phase3_fitness=0.877168}
+SAVED:{phase1_final_pop_size=4503}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4073}
+SAVED:{phase1_sum_del_coeffs=-0.017137}
+SAVED:{phase2_sum_del_coeffs=-0.215667}
+SAVED:{phase3_sum_del_coeffs=-0.214425}
+--> Simulation 37
+SAVED:{phase1_fitness=0.848673}
+SAVED:{phase2_fitness=0.953799}
+SAVED:{phase3_fitness=0.842037}
+SAVED:{phase1_final_pop_size=4464}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4177}
+SAVED:{phase1_sum_del_coeffs=-0.018397}
+SAVED:{phase2_sum_del_coeffs=-0.16914}
+SAVED:{phase3_sum_del_coeffs=-0.172731}
+--> Simulation 38
+SAVED:{phase1_fitness=0.858012}
+SAVED:{phase2_fitness=1.01795}
+SAVED:{phase3_fitness=0.860501}
+SAVED:{phase1_final_pop_size=4464}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3903}
+SAVED:{phase1_sum_del_coeffs=-0.0177995}
+SAVED:{phase2_sum_del_coeffs=-0.319974}
+SAVED:{phase3_sum_del_coeffs=-0.300028}
+--> Simulation 39
+SAVED:{phase1_fitness=0.855058}
+SAVED:{phase2_fitness=0.929268}
+SAVED:{phase3_fitness=0.833718}
+SAVED:{phase1_final_pop_size=4518}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=4089}
+SAVED:{phase1_sum_del_coeffs=-0.0174179}
+SAVED:{phase2_sum_del_coeffs=-0.203921}
+SAVED:{phase3_sum_del_coeffs=-0.198806}
+--> Simulation 40
+SAVED:{phase1_fitness=0.860055}
+SAVED:{phase2_fitness=0.887045}
+SAVED:{phase3_fitness=0.866105}
+SAVED:{phase1_final_pop_size=4462}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=3946}
+SAVED:{phase1_sum_del_coeffs=-0.0188931}
+SAVED:{phase2_sum_del_coeffs=-0.270558}
+SAVED:{phase3_sum_del_coeffs=-0.270332}
+--> Simulation 41
+SAVED:{phase1_fitness=0.85434}
+SAVED:{phase2_fitness=0.849685}
+SAVED:{phase3_fitness=0.865087}
+SAVED:{phase1_final_pop_size=4486}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4154}
+SAVED:{phase1_sum_del_coeffs=-0.0181476}
+SAVED:{phase2_sum_del_coeffs=-0.184872}
+SAVED:{phase3_sum_del_coeffs=-0.17268}
+--> Simulation 42
+SAVED:{phase1_fitness=0.863246}
+SAVED:{phase2_fitness=0.677637}
+SAVED:{phase3_fitness=0.841294}
+SAVED:{phase1_final_pop_size=4450}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4053}
+SAVED:{phase1_sum_del_coeffs=-0.0173569}
+SAVED:{phase2_sum_del_coeffs=-0.193884}
+SAVED:{phase3_sum_del_coeffs=-0.199893}
+--> Simulation 43
+SAVED:{phase1_fitness=0.85052}
+SAVED:{phase2_fitness=0.835229}
+SAVED:{phase3_fitness=0.865977}
+SAVED:{phase1_final_pop_size=4507}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=3927}
+SAVED:{phase1_sum_del_coeffs=-0.0188629}
+SAVED:{phase2_sum_del_coeffs=-0.2965}
+SAVED:{phase3_sum_del_coeffs=-0.286556}
+--> Simulation 44
+SAVED:{phase1_fitness=0.849127}
+SAVED:{phase2_fitness=1.0395}
+SAVED:{phase3_fitness=0.83987}
+SAVED:{phase1_final_pop_size=4472}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4194}
+SAVED:{phase1_sum_del_coeffs=-0.0189526}
+SAVED:{phase2_sum_del_coeffs=-0.16441}
+SAVED:{phase3_sum_del_coeffs=-0.158004}
+--> Simulation 45
+SAVED:{phase1_fitness=0.847787}
+SAVED:{phase2_fitness=0.939362}
+SAVED:{phase3_fitness=0.861824}
+SAVED:{phase1_final_pop_size=4508}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=3991}
+SAVED:{phase1_sum_del_coeffs=-0.0191491}
+SAVED:{phase2_sum_del_coeffs=-0.250293}
+SAVED:{phase3_sum_del_coeffs=-0.242529}
+--> Simulation 46
+SAVED:{phase1_fitness=0.8604}
+SAVED:{phase2_fitness=0.826941}
+SAVED:{phase3_fitness=0.856065}
+SAVED:{phase1_final_pop_size=4534}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=3987}
+SAVED:{phase1_sum_del_coeffs=-0.0190918}
+SAVED:{phase2_sum_del_coeffs=-0.273525}
+SAVED:{phase3_sum_del_coeffs=-0.269181}
+--> Simulation 47
+SAVED:{phase1_fitness=0.84907}
+SAVED:{phase2_fitness=0.747087}
+SAVED:{phase3_fitness=0.856765}
+SAVED:{phase1_final_pop_size=4483}
+SAVED:{phase2_final_pop_size=45}
+SAVED:{phase3_final_pop_size=4075}
+SAVED:{phase1_sum_del_coeffs=-0.0186438}
+SAVED:{phase2_sum_del_coeffs=-0.225244}
+SAVED:{phase3_sum_del_coeffs=-0.228349}
+--> Simulation 48
+SAVED:{phase1_fitness=0.86135}
+SAVED:{phase2_fitness=0.832955}
+SAVED:{phase3_fitness=0.848147}
+SAVED:{phase1_final_pop_size=4489}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3845}
+SAVED:{phase1_sum_del_coeffs=-0.0180699}
+SAVED:{phase2_sum_del_coeffs=-0.321447}
+SAVED:{phase3_sum_del_coeffs=-0.32734}
+--> Simulation 49
+SAVED:{phase1_fitness=0.852884}
+SAVED:{phase2_fitness=0.938748}
+SAVED:{phase3_fitness=0.857641}
+SAVED:{phase1_final_pop_size=4480}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=3989}
+SAVED:{phase1_sum_del_coeffs=-0.0185422}
+SAVED:{phase2_sum_del_coeffs=-0.2338}
+SAVED:{phase3_sum_del_coeffs=-0.229298}
+--> Simulation 50
+SAVED:{phase1_fitness=0.828071}
+SAVED:{phase2_fitness=0.847449}
+SAVED:{phase3_fitness=0.856381}
+SAVED:{phase1_final_pop_size=4482}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=4035}
+SAVED:{phase1_sum_del_coeffs=-0.0198677}
+SAVED:{phase2_sum_del_coeffs=-0.241889}
+SAVED:{phase3_sum_del_coeffs=-0.242974}
+--> Simulation 51
+SAVED:{phase1_fitness=0.843477}
+SAVED:{phase2_fitness=0.732715}
+SAVED:{phase3_fitness=0.85755}
+SAVED:{phase1_final_pop_size=4464}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=3889}
+SAVED:{phase1_sum_del_coeffs=-0.0176584}
+SAVED:{phase2_sum_del_coeffs=-0.306026}
+SAVED:{phase3_sum_del_coeffs=-0.299171}
+--> Simulation 52
+SAVED:{phase1_fitness=0.870067}
+SAVED:{phase2_fitness=0.883321}
+SAVED:{phase3_fitness=0.844693}
+SAVED:{phase1_final_pop_size=4520}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4149}
+SAVED:{phase1_sum_del_coeffs=-0.0177091}
+SAVED:{phase2_sum_del_coeffs=-0.1834}
+SAVED:{phase3_sum_del_coeffs=-0.17227}
+--> Simulation 53
+SAVED:{phase1_fitness=0.847396}
+SAVED:{phase2_fitness=0.885356}
+SAVED:{phase3_fitness=0.85692}
+SAVED:{phase1_final_pop_size=4430}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4088}
+SAVED:{phase1_sum_del_coeffs=-0.0162422}
+SAVED:{phase2_sum_del_coeffs=-0.225833}
+SAVED:{phase3_sum_del_coeffs=-0.199409}
+--> Simulation 54
+SAVED:{phase1_fitness=0.869031}
+SAVED:{phase2_fitness=0.921299}
+SAVED:{phase3_fitness=0.838424}
+SAVED:{phase1_final_pop_size=4508}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=3988}
+SAVED:{phase1_sum_del_coeffs=-0.0182764}
+SAVED:{phase2_sum_del_coeffs=-0.262667}
+SAVED:{phase3_sum_del_coeffs=-0.242144}
+--> Simulation 55
+SAVED:{phase1_fitness=0.870361}
+SAVED:{phase2_fitness=0.803265}
+SAVED:{phase3_fitness=0.833638}
+SAVED:{phase1_final_pop_size=4466}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4111}
+SAVED:{phase1_sum_del_coeffs=-0.0196677}
+SAVED:{phase2_sum_del_coeffs=-0.203333}
+SAVED:{phase3_sum_del_coeffs=-0.201888}
+--> Simulation 56
+SAVED:{phase1_fitness=0.854188}
+SAVED:{phase2_fitness=0.77854}
+SAVED:{phase3_fitness=0.854655}
+SAVED:{phase1_final_pop_size=4426}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4227}
+SAVED:{phase1_sum_del_coeffs=-0.0193884}
+SAVED:{phase2_sum_del_coeffs=-0.1415}
+SAVED:{phase3_sum_del_coeffs=-0.145571}
+--> Simulation 57
+SAVED:{phase1_fitness=0.866737}
+SAVED:{phase2_fitness=0.798249}
+SAVED:{phase3_fitness=0.841856}
+SAVED:{phase1_final_pop_size=4463}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=3902}
+SAVED:{phase1_sum_del_coeffs=-0.0178176}
+SAVED:{phase2_sum_del_coeffs=-0.29225}
+SAVED:{phase3_sum_del_coeffs=-0.297572}
+--> Simulation 58
+SAVED:{phase1_fitness=0.849012}
+SAVED:{phase2_fitness=0.84142}
+SAVED:{phase3_fitness=0.860504}
+SAVED:{phase1_final_pop_size=4468}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3885}
+SAVED:{phase1_sum_del_coeffs=-0.018863}
+SAVED:{phase2_sum_del_coeffs=-0.333237}
+SAVED:{phase3_sum_del_coeffs=-0.314223}
+--> Simulation 59
+SAVED:{phase1_fitness=0.866296}
+SAVED:{phase2_fitness=0.786587}
+SAVED:{phase3_fitness=0.85132}
+SAVED:{phase1_final_pop_size=4465}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=4105}
+SAVED:{phase1_sum_del_coeffs=-0.0172562}
+SAVED:{phase2_sum_del_coeffs=-0.202028}
+SAVED:{phase3_sum_del_coeffs=-0.199624}
+--> Simulation 60
+SAVED:{phase1_fitness=0.874187}
+SAVED:{phase2_fitness=0.991516}
+SAVED:{phase3_fitness=0.855334}
+SAVED:{phase1_final_pop_size=4516}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=3865}
+SAVED:{phase1_sum_del_coeffs=-0.0172148}
+SAVED:{phase2_sum_del_coeffs=-0.3045}
+SAVED:{phase3_sum_del_coeffs=-0.298857}
+--> Simulation 61
+SAVED:{phase1_fitness=0.840159}
+SAVED:{phase2_fitness=1.11609}
+SAVED:{phase3_fitness=0.857272}
+SAVED:{phase1_final_pop_size=4506}
+SAVED:{phase2_final_pop_size=37}
+SAVED:{phase3_final_pop_size=4209}
+SAVED:{phase1_sum_del_coeffs=-0.0177656}
+SAVED:{phase2_sum_del_coeffs=-0.153622}
+SAVED:{phase3_sum_del_coeffs=-0.144208}
+--> Simulation 62
+SAVED:{phase1_fitness=0.848514}
+SAVED:{phase2_fitness=0.930653}
+SAVED:{phase3_fitness=0.860553}
+SAVED:{phase1_final_pop_size=4470}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4156}
+SAVED:{phase1_sum_del_coeffs=-0.0178336}
+SAVED:{phase2_sum_del_coeffs=-0.17386}
+SAVED:{phase3_sum_del_coeffs=-0.185665}
+--> Simulation 63
+SAVED:{phase1_fitness=0.843513}
+SAVED:{phase2_fitness=0.803256}
+SAVED:{phase3_fitness=0.854309}
+SAVED:{phase1_final_pop_size=4508}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4047}
+SAVED:{phase1_sum_del_coeffs=-0.0194177}
+SAVED:{phase2_sum_del_coeffs=-0.212767}
+SAVED:{phase3_sum_del_coeffs=-0.214381}
+--> Simulation 64
+SAVED:{phase1_fitness=0.843642}
+SAVED:{phase2_fitness=0.778284}
+SAVED:{phase3_fitness=0.863659}
+SAVED:{phase1_final_pop_size=4467}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=3965}
+SAVED:{phase1_sum_del_coeffs=-0.0202651}
+SAVED:{phase2_sum_del_coeffs=-0.289333}
+SAVED:{phase3_sum_del_coeffs=-0.271937}
+--> Simulation 65
+SAVED:{phase1_fitness=0.851572}
+SAVED:{phase2_fitness=0.800626}
+SAVED:{phase3_fitness=0.854383}
+SAVED:{phase1_final_pop_size=4488}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=3990}
+SAVED:{phase1_sum_del_coeffs=-0.0186199}
+SAVED:{phase2_sum_del_coeffs=-0.262073}
+SAVED:{phase3_sum_del_coeffs=-0.242593}
+--> Simulation 66
+SAVED:{phase1_fitness=0.837085}
+SAVED:{phase2_fitness=0.91773}
+SAVED:{phase3_fitness=0.85862}
+SAVED:{phase1_final_pop_size=4480}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=4213}
+SAVED:{phase1_sum_del_coeffs=-0.0209156}
+SAVED:{phase2_sum_del_coeffs=-0.12839}
+SAVED:{phase3_sum_del_coeffs=-0.130795}
+--> Simulation 67
+SAVED:{phase1_fitness=0.85255}
+SAVED:{phase2_fitness=0.832402}
+SAVED:{phase3_fitness=0.857405}
+SAVED:{phase1_final_pop_size=4548}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=3937}
+SAVED:{phase1_sum_del_coeffs=-0.0179648}
+SAVED:{phase2_sum_del_coeffs=-0.2618}
+SAVED:{phase3_sum_del_coeffs=-0.27095}
+--> Simulation 68
+SAVED:{phase1_fitness=0.865315}
+SAVED:{phase2_fitness=0.802496}
+SAVED:{phase3_fitness=0.855764}
+SAVED:{phase1_final_pop_size=4486}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=3991}
+SAVED:{phase1_sum_del_coeffs=-0.0180789}
+SAVED:{phase2_sum_del_coeffs=-0.283889}
+SAVED:{phase3_sum_del_coeffs=-0.256916}
+--> Simulation 69
+SAVED:{phase1_fitness=0.858871}
+SAVED:{phase2_fitness=0.888118}
+SAVED:{phase3_fitness=0.855009}
+SAVED:{phase1_final_pop_size=4531}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4097}
+SAVED:{phase1_sum_del_coeffs=-0.0180662}
+SAVED:{phase2_sum_del_coeffs=-0.16135}
+SAVED:{phase3_sum_del_coeffs=-0.173162}
+--> Simulation 70
+SAVED:{phase1_fitness=0.867905}
+SAVED:{phase2_fitness=0.942688}
+SAVED:{phase3_fitness=0.84545}
+SAVED:{phase1_final_pop_size=4470}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=3924}
+SAVED:{phase1_sum_del_coeffs=-0.0196407}
+SAVED:{phase2_sum_del_coeffs=-0.298667}
+SAVED:{phase3_sum_del_coeffs=-0.298888}
+--> Simulation 71
+SAVED:{phase1_fitness=0.842663}
+SAVED:{phase2_fitness=0.831634}
+SAVED:{phase3_fitness=0.871495}
+SAVED:{phase1_final_pop_size=4518}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=4086}
+SAVED:{phase1_sum_del_coeffs=-0.018896}
+SAVED:{phase2_sum_del_coeffs=-0.203184}
+SAVED:{phase3_sum_del_coeffs=-0.199577}
+--> Simulation 72
+SAVED:{phase1_fitness=0.849748}
+SAVED:{phase2_fitness=0.8128}
+SAVED:{phase3_fitness=0.856205}
+SAVED:{phase1_final_pop_size=4475}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4106}
+SAVED:{phase1_sum_del_coeffs=-0.0176541}
+SAVED:{phase2_sum_del_coeffs=-0.168488}
+SAVED:{phase3_sum_del_coeffs=-0.173092}
+--> Simulation 73
+SAVED:{phase1_fitness=0.847036}
+SAVED:{phase2_fitness=0.924558}
+SAVED:{phase3_fitness=0.86003}
+SAVED:{phase1_final_pop_size=4513}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=4221}
+SAVED:{phase1_sum_del_coeffs=-0.0186842}
+SAVED:{phase2_sum_del_coeffs=-0.169537}
+SAVED:{phase3_sum_del_coeffs=-0.157237}
+--> Simulation 74
+SAVED:{phase1_fitness=0.860171}
+SAVED:{phase2_fitness=0.880143}
+SAVED:{phase3_fitness=0.858121}
+SAVED:{phase1_final_pop_size=4464}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4005}
+SAVED:{phase1_sum_del_coeffs=-0.0167755}
+SAVED:{phase2_sum_del_coeffs=-0.277167}
+SAVED:{phase3_sum_del_coeffs=-0.255896}
+--> Simulation 75
+SAVED:{phase1_fitness=0.859505}
+SAVED:{phase2_fitness=0.896819}
+SAVED:{phase3_fitness=0.867511}
+SAVED:{phase1_final_pop_size=4490}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4107}
+SAVED:{phase1_sum_del_coeffs=-0.0183512}
+SAVED:{phase2_sum_del_coeffs=-0.183465}
+SAVED:{phase3_sum_del_coeffs=-0.1865}
+--> Simulation 76
+SAVED:{phase1_fitness=0.843727}
+SAVED:{phase2_fitness=0.976293}
+SAVED:{phase3_fitness=0.859154}
+SAVED:{phase1_final_pop_size=4499}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4077}
+SAVED:{phase1_sum_del_coeffs=-0.0198175}
+SAVED:{phase2_sum_del_coeffs=-0.2443}
+SAVED:{phase3_sum_del_coeffs=-0.228648}
+--> Simulation 77
+SAVED:{phase1_fitness=0.849193}
+SAVED:{phase2_fitness=0.993852}
+SAVED:{phase3_fitness=0.849439}
+SAVED:{phase1_final_pop_size=4509}
+SAVED:{phase2_final_pop_size=38}
+SAVED:{phase3_final_pop_size=4060}
+SAVED:{phase1_sum_del_coeffs=-0.0186325}
+SAVED:{phase2_sum_del_coeffs=-0.195447}
+SAVED:{phase3_sum_del_coeffs=-0.199407}
+--> Simulation 78
+SAVED:{phase1_fitness=0.861979}
+SAVED:{phase2_fitness=0.961585}
+SAVED:{phase3_fitness=0.852631}
+SAVED:{phase1_final_pop_size=4459}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=3913}
+SAVED:{phase1_sum_del_coeffs=-0.0191633}
+SAVED:{phase2_sum_del_coeffs=-0.294179}
+SAVED:{phase3_sum_del_coeffs=-0.283013}
+--> Simulation 79
+SAVED:{phase1_fitness=0.859034}
+SAVED:{phase2_fitness=0.642409}
+SAVED:{phase3_fitness=0.861378}
+SAVED:{phase1_final_pop_size=4477}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4123}
+SAVED:{phase1_sum_del_coeffs=-0.0177228}
+SAVED:{phase2_sum_del_coeffs=-0.22925}
+SAVED:{phase3_sum_del_coeffs=-0.185295}
+--> Simulation 80
+SAVED:{phase1_fitness=0.86164}
+SAVED:{phase2_fitness=0.815294}
+SAVED:{phase3_fitness=0.854845}
+SAVED:{phase1_final_pop_size=4486}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=3965}
+SAVED:{phase1_sum_del_coeffs=-0.0168384}
+SAVED:{phase2_sum_del_coeffs=-0.316833}
+SAVED:{phase3_sum_del_coeffs=-0.274167}
+--> Simulation 81
+SAVED:{phase1_fitness=0.861651}
+SAVED:{phase2_fitness=0.767086}
+SAVED:{phase3_fitness=0.868668}
+SAVED:{phase1_final_pop_size=4502}
+SAVED:{phase2_final_pop_size=37}
+SAVED:{phase3_final_pop_size=4121}
+SAVED:{phase1_sum_del_coeffs=-0.0177286}
+SAVED:{phase2_sum_del_coeffs=-0.198081}
+SAVED:{phase3_sum_del_coeffs=-0.200471}
+--> Simulation 82
+SAVED:{phase1_fitness=0.860377}
+SAVED:{phase2_fitness=1.00381}
+SAVED:{phase3_fitness=0.842672}
+SAVED:{phase1_final_pop_size=4507}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4081}
+SAVED:{phase1_sum_del_coeffs=-0.0177555}
+SAVED:{phase2_sum_del_coeffs=-0.216641}
+SAVED:{phase3_sum_del_coeffs=-0.214346}
+--> Simulation 83
+SAVED:{phase1_fitness=0.842213}
+SAVED:{phase2_fitness=0.747922}
+SAVED:{phase3_fitness=0.865729}
+SAVED:{phase1_final_pop_size=4507}
+SAVED:{phase2_final_pop_size=41}
+SAVED:{phase3_final_pop_size=3949}
+SAVED:{phase1_sum_del_coeffs=-0.0190353}
+SAVED:{phase2_sum_del_coeffs=-0.247561}
+SAVED:{phase3_sum_del_coeffs=-0.256596}
+--> Simulation 84
+SAVED:{phase1_fitness=0.85951}
+SAVED:{phase2_fitness=0.863207}
+SAVED:{phase3_fitness=0.853067}
+SAVED:{phase1_final_pop_size=4471}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=3978}
+SAVED:{phase1_sum_del_coeffs=-0.0193326}
+SAVED:{phase2_sum_del_coeffs=-0.246591}
+SAVED:{phase3_sum_del_coeffs=-0.241998}
+--> Simulation 85
+SAVED:{phase1_fitness=0.874138}
+SAVED:{phase2_fitness=0.837679}
+SAVED:{phase3_fitness=0.864723}
+SAVED:{phase1_final_pop_size=4505}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=4015}
+SAVED:{phase1_sum_del_coeffs=-0.0170424}
+SAVED:{phase2_sum_del_coeffs=-0.225273}
+SAVED:{phase3_sum_del_coeffs=-0.225827}
+--> Simulation 86
+SAVED:{phase1_fitness=0.841953}
+SAVED:{phase2_fitness=1.14773}
+SAVED:{phase3_fitness=0.87131}
+SAVED:{phase1_final_pop_size=4525}
+SAVED:{phase2_final_pop_size=37}
+SAVED:{phase3_final_pop_size=4135}
+SAVED:{phase1_sum_del_coeffs=-0.0172873}
+SAVED:{phase2_sum_del_coeffs=-0.181622}
+SAVED:{phase3_sum_del_coeffs=-0.173761}
+--> Simulation 87
+SAVED:{phase1_fitness=0.860011}
+SAVED:{phase2_fitness=0.876577}
+SAVED:{phase3_fitness=0.843613}
+SAVED:{phase1_final_pop_size=4464}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4229}
+SAVED:{phase1_sum_del_coeffs=-0.0182276}
+SAVED:{phase2_sum_del_coeffs=-0.150167}
+SAVED:{phase3_sum_del_coeffs=-0.144045}
+--> Simulation 88
+SAVED:{phase1_fitness=0.85437}
+SAVED:{phase2_fitness=0.929105}
+SAVED:{phase3_fitness=0.861763}
+SAVED:{phase1_final_pop_size=4466}
+SAVED:{phase2_final_pop_size=37}
+SAVED:{phase3_final_pop_size=3832}
+SAVED:{phase1_sum_del_coeffs=-0.0184812}
+SAVED:{phase2_sum_del_coeffs=-0.329}
+SAVED:{phase3_sum_del_coeffs=-0.327588}
+--> Simulation 89
+SAVED:{phase1_fitness=0.864783}
+SAVED:{phase2_fitness=0.870604}
+SAVED:{phase3_fitness=0.864547}
+SAVED:{phase1_final_pop_size=4483}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=4128}
+SAVED:{phase1_sum_del_coeffs=-0.0185329}
+SAVED:{phase2_sum_del_coeffs=-0.215026}
+SAVED:{phase3_sum_del_coeffs=-0.185642}
+--> Simulation 90
+SAVED:{phase1_fitness=0.848236}
+SAVED:{phase2_fitness=0.996037}
+SAVED:{phase3_fitness=0.861092}
+SAVED:{phase1_final_pop_size=4461}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=4040}
+SAVED:{phase1_sum_del_coeffs=-0.0190558}
+SAVED:{phase2_sum_del_coeffs=-0.296917}
+SAVED:{phase3_sum_del_coeffs=-0.230064}
+--> Simulation 91
+SAVED:{phase1_fitness=0.851808}
+SAVED:{phase2_fitness=0.781954}
+SAVED:{phase3_fitness=0.872165}
+SAVED:{phase1_final_pop_size=4436}
+SAVED:{phase2_final_pop_size=43}
+SAVED:{phase3_final_pop_size=4204}
+SAVED:{phase1_sum_del_coeffs=-0.0178693}
+SAVED:{phase2_sum_del_coeffs=-0.142116}
+SAVED:{phase3_sum_del_coeffs=-0.143467}
+--> Simulation 92
+SAVED:{phase1_fitness=0.846146}
+SAVED:{phase2_fitness=0.830273}
+SAVED:{phase3_fitness=0.873534}
+SAVED:{phase1_final_pop_size=4454}
+SAVED:{phase2_final_pop_size=39}
+SAVED:{phase3_final_pop_size=3986}
+SAVED:{phase1_sum_del_coeffs=-0.0191203}
+SAVED:{phase2_sum_del_coeffs=-0.262051}
+SAVED:{phase3_sum_del_coeffs=-0.255662}
+--> Simulation 93
+SAVED:{phase1_fitness=0.869851}
+SAVED:{phase2_fitness=0.746329}
+SAVED:{phase3_fitness=0.861092}
+SAVED:{phase1_final_pop_size=4483}
+SAVED:{phase2_final_pop_size=37}
+SAVED:{phase3_final_pop_size=3912}
+SAVED:{phase1_sum_del_coeffs=-0.0187937}
+SAVED:{phase2_sum_del_coeffs=-0.253892}
+SAVED:{phase3_sum_del_coeffs=-0.257236}
+--> Simulation 94
+SAVED:{phase1_fitness=0.85674}
+SAVED:{phase2_fitness=0.922832}
+SAVED:{phase3_fitness=0.848763}
+SAVED:{phase1_final_pop_size=4467}
+SAVED:{phase2_final_pop_size=42}
+SAVED:{phase3_final_pop_size=4133}
+SAVED:{phase1_sum_del_coeffs=-0.017015}
+SAVED:{phase2_sum_del_coeffs=-0.182667}
+SAVED:{phase3_sum_del_coeffs=-0.185377}
+--> Simulation 95
+SAVED:{phase1_fitness=0.866268}
+SAVED:{phase2_fitness=0.77789}
+SAVED:{phase3_fitness=0.859923}
+SAVED:{phase1_final_pop_size=4475}
+SAVED:{phase2_final_pop_size=32}
+SAVED:{phase3_final_pop_size=4071}
+SAVED:{phase1_sum_del_coeffs=-0.0176369}
+SAVED:{phase2_sum_del_coeffs=-0.213281}
+SAVED:{phase3_sum_del_coeffs=-0.214421}
+--> Simulation 96
+SAVED:{phase1_fitness=0.871083}
+SAVED:{phase2_fitness=0.75854}
+SAVED:{phase3_fitness=0.846147}
+SAVED:{phase1_final_pop_size=4431}
+SAVED:{phase2_final_pop_size=36}
+SAVED:{phase3_final_pop_size=3860}
+SAVED:{phase1_sum_del_coeffs=-0.0204471}
+SAVED:{phase2_sum_del_coeffs=-0.329972}
+SAVED:{phase3_sum_del_coeffs=-0.313576}
+--> Simulation 97
+SAVED:{phase1_fitness=0.86166}
+SAVED:{phase2_fitness=0.817539}
+SAVED:{phase3_fitness=0.862191}
+SAVED:{phase1_final_pop_size=4475}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=3976}
+SAVED:{phase1_sum_del_coeffs=-0.018078}
+SAVED:{phase2_sum_del_coeffs=-0.267925}
+SAVED:{phase3_sum_del_coeffs=-0.271016}
+--> Simulation 98
+SAVED:{phase1_fitness=0.845471}
+SAVED:{phase2_fitness=0.714533}
+SAVED:{phase3_fitness=0.847751}
+SAVED:{phase1_final_pop_size=4510}
+SAVED:{phase2_final_pop_size=40}
+SAVED:{phase3_final_pop_size=4099}
+SAVED:{phase1_sum_del_coeffs=-0.0179734}
+SAVED:{phase2_sum_del_coeffs=-0.191625}
+SAVED:{phase3_sum_del_coeffs=-0.188761}
+--> Simulation 99
+SAVED:{phase1_fitness=0.851475}
+SAVED:{phase2_fitness=0.876788}
+SAVED:{phase3_fitness=0.854601}
+SAVED:{phase1_final_pop_size=4462}
+SAVED:{phase2_final_pop_size=44}
+SAVED:{phase3_final_pop_size=4185}
+SAVED:{phase1_sum_del_coeffs=-0.0170905}
+SAVED:{phase2_sum_del_coeffs=-0.188364}
+SAVED:{phase3_sum_del_coeffs=-0.157666}
+--> Simulation 100
+SAVED:{phase1_fitness=0.847472}
+SAVED:{phase2_fitness=0.994519}
+SAVED:{phase3_fitness=0.849154}
+SAVED:{phase1_final_pop_size=4502}
+SAVED:{phase2_final_pop_size=37}
+SAVED:{phase3_final_pop_size=3819}
+SAVED:{phase1_sum_del_coeffs=-0.0182821}
+SAVED:{phase2_sum_del_coeffs=-0.323892}
+SAVED:{phase3_sum_del_coeffs=-0.299908}
+Average of phase1_fitness: 0.85604353
+Average of phase2_fitness: 0.87251631
+Average of phase3_fitness: 0.85563618
+Average of phase1_final_pop_size: 4487.17
+Average of phase2_final_pop_size: 39.92
+Average of phase3_final_pop_size: 4051.02
+Average of phase1_sum_del_coeffs: -0.018312336
+Average of phase2_sum_del_coeffs: -0.22995383
+Average of phase3_sum_del_coeffs: -0.22124548
