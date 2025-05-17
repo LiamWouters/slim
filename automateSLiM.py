@@ -38,10 +38,11 @@ def writeOutput(output: str, prefix: str = "", lock=None):
         print(prefix + final_output)
         return
 
-    with lock:
-        f = open(OUTPUT_FILE, "a")
-        f.write(prefix + final_output)
-        f.close()
+    if lock:
+        with lock:
+            f = open(OUTPUT_FILE, "a")
+            f.write(prefix + final_output)
+            f.close()
 
 def runSLiM(iteration: int, slim_program: list, lock=None):
     print("simulation:", iteration+1, "start")
