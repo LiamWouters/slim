@@ -2,6 +2,9 @@ import json, subprocess, argparse, os, time
 from statistics import mean
 from multiprocessing import Pool, Manager
 
+# SET FOR YOURSELF
+MULTIPROCESSING_LIMIT = 4 # amount of cores used
+
 ## Script Arguments ##
 parser = argparse.ArgumentParser(prog="automateSLiM.py", description="This program allows a user to run a .slim simulation file multiple times.")
 
@@ -103,7 +106,7 @@ if __name__ == "__main__":
             manager = Manager()
             lock = manager.Lock()
             func_args = [(i, slim_program, lock) for i in range(NUM_SIMULATIONS)]
-            with Pool() as pool:
+            with Pool(processes=MULTIPROCESSING_LIMIT) as pool:
                 pool.starmap(runSLiM, func_args)
                 pool.close()
                 pool.join()
@@ -126,7 +129,7 @@ if __name__ == "__main__":
                             variables[variable[0]] = []
                         variables[variable[0]].append(float(variable[1]))
             with open(OUTPUT_FILE, "a") as file:
-                file.write("\n-- AVERAGES --")
+                file.write("\n-- AVERAGES --\n")
                 for key in list(variables.keys()):
                     var = mean(list(variables[key]))
                     file.write("Average of " + str(key) + ": " + str(var) + "\n")
